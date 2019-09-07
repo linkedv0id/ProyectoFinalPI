@@ -38,13 +38,13 @@ public class Cliente {
     public void setApellido(String apellido){this.apellido=apellido;}
     
     public String getEmail(){return email;}
-    public void setEmeail(String email){this.email=email;}
+    public void setEmail(String email){this.email=email;}
     
     public int getDireccionID(){return direccionID;}
     public void setDireccionID(int direccionID){this.direccionID=direccionID;}
     
     public boolean getActivado(){return activado;}
-    public void setActvado(boolean activado){this.activado=activado;}
+    public void setActivado(boolean activado){this.activado=activado;}
     
     public int getActivo(){return activo;}
     public void setActivo(int activo){this.activo=activo;}    

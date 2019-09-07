@@ -23,7 +23,7 @@ public class Fachada {
             if(con == null){
                 //Determina cuando se termina el programa
                
-                con = DriverManager.getConnection("jdbc:postgresql://pgsql2/1741787", "1741787", "1741787");
+                con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DvDRental", "postgres", "1234");
             }
                          
         }
