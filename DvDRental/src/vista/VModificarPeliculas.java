@@ -103,6 +103,7 @@ public class VModificarPeliculas extends javax.swing.JInternalFrame {
         });
 
         txtDescripcion.setEnabled(false);
+        txtDescripcion.setMaximumSize(new java.awt.Dimension(100, 100));
 
         txtAño.setEnabled(false);
 
@@ -174,11 +175,11 @@ public class VModificarPeliculas extends javax.swing.JInternalFrame {
                             .addComponent(jlAño))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDescripcion)
                             .addComponent(txtID)
                             .addComponent(txtTitulo)
                             .addComponent(txtAño, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jcLenguaje, javax.swing.GroupLayout.Alignment.TRAILING, 0, 100, Short.MAX_VALUE))
+                            .addComponent(jcLenguaje, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jlLenguaje)

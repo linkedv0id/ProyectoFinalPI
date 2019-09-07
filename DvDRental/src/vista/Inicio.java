@@ -20,7 +20,8 @@ public class Inicio extends JFrame {
     private JMenu menu0,menu1, menu2,menu3,menu4;
     private JMenuItem menu0Item1, menu0Item2;
     private JMenuItem menu1Item1, menu1Item2,menu1Item3;
-    private JMenuItem menu2Item1;     
+    private JMenuItem menu2Item1;  
+    private JMenuItem menu3Item1;
     private JDesktopPane JDPanel;
     private Container contenedor;
     
@@ -54,11 +55,15 @@ public class Inicio extends JFrame {
         menu2Item1= new JMenuItem("Gestionar Paises");
         menu2.add(menu2Item1);
         
+        menu3=new JMenu("Clientes");
+        menu3Item1=new JMenuItem("Gestionar Clientes");
+        menu3.add(menu3Item1);
+        
         
         //
         //
         
-        barraMenu.add(menu0); barraMenu.add(menu1); barraMenu.add(menu2);
+        barraMenu.add(menu0); barraMenu.add(menu1); barraMenu.add(menu2);barraMenu.add(menu3);
         
         JDPanel=new JDesktopPane();
         contenedor=getContentPane();
@@ -100,6 +105,12 @@ public class Inicio extends JFrame {
             }
         });
         
+        menu3Item1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+             menu3Item1ClientesActionPerformed(evt);
+            }
+        });
+        
         
         
     }
@@ -122,6 +133,9 @@ public class Inicio extends JFrame {
     public void menu2Item1PaisesActionPerformed(ActionEvent evt){
         centrar(menu2Item1.getText());
     }
+    public void menu3Item1ClientesActionPerformed(ActionEvent evt){
+        centrar(menu3Item1.getText());
+    }
     
     
      public void centrar(String texto){
@@ -137,6 +151,9 @@ public class Inicio extends JFrame {
         }
         if(texto.equalsIgnoreCase("Gestionar Paises")){
             v=new VModificarPaises();
+        }
+        if(texto.equalsIgnoreCase("Gestionar Clientes")){
+            v=new VModificarClientes();
         }
          
         int x = (JDPanel.getWidth() / 2) - v.getWidth() /2;
