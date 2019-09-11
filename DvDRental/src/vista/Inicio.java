@@ -19,7 +19,7 @@ public class Inicio extends JFrame {
     private JMenuBar barraMenu;
     private JMenu menu0,menu1, menu2,menu3,menu4;
     private JMenuItem menu0Item1, menu0Item2;
-    private JMenuItem menu1Item1, menu1Item2,menu1Item3;
+    private JMenuItem menu1Item1, menu1Item2,menu1Item3,menu1Item4;
     private JMenuItem menu2Item1;  
     private JMenuItem menu3Item1;
     private JDesktopPane JDPanel;
@@ -49,7 +49,8 @@ public class Inicio extends JFrame {
         menu1Item1= new JMenuItem("Modificar Peliculas");       
         menu1Item2= new JMenuItem("Listado de Peliculas");
         menu1Item3=new JMenuItem("Gestionar Categorias");
-        menu1.add(menu1Item1);  ;  menu1.add(menu1Item2);menu1.add(menu1Item3);
+        menu1Item4= new JMenuItem("Modificar Actores");
+        menu1.add(menu1Item1);  ;  menu1.add(menu1Item2);menu1.add(menu1Item3);menu1.add(menu1Item4);
         
         menu2=new JMenu("Ubicaciones");
         menu2Item1= new JMenuItem("Gestionar Paises");
@@ -58,6 +59,7 @@ public class Inicio extends JFrame {
         menu3=new JMenu("Clientes");
         menu3Item1=new JMenuItem("Gestionar Clientes");
         menu3.add(menu3Item1);
+        
         
         
         //
@@ -99,6 +101,13 @@ public class Inicio extends JFrame {
                  menu1ItemCategoriasActionPerformed(evt);
             }
         });
+        
+        menu1Item4.addActionListener(new java.awt.event.ActionListener() {            
+            public void actionPerformed(ActionEvent evt) {
+                 menu1Item4ActoresActionPerformed(evt);
+            }
+            });
+        
         menu2Item1.addActionListener(new java.awt.event.ActionListener() {           
             public void actionPerformed(ActionEvent evt) {
                menu2Item1PaisesActionPerformed( evt);
@@ -130,6 +139,9 @@ public class Inicio extends JFrame {
     public void menu1ItemCategoriasActionPerformed(ActionEvent evt){
         centrar(menu1Item3.getText());
     }
+    public void menu1Item4ActoresActionPerformed(ActionEvent evt){
+        centrar(menu1Item4.getText());
+    }
     public void menu2Item1PaisesActionPerformed(ActionEvent evt){
         centrar(menu2Item1.getText());
     }
@@ -154,6 +166,9 @@ public class Inicio extends JFrame {
         }
         if(texto.equalsIgnoreCase("Gestionar Clientes")){
             v=new VModificarClientes();
+        }
+        if(texto.equalsIgnoreCase("Modificar Actores")){
+            v = new VModificarActores();
         }
          
         int x = (JDPanel.getWidth() / 2) - v.getWidth() /2;

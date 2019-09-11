@@ -27,7 +27,7 @@ public class ClienteDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "DELETE FROM film WHERE film_id = ? ";
+            String sql = "DELETE FROM customet WHERE customer_id = ? ";
             pstm = con.prepareStatement(sql);
             pstm.setInt(1,Integer.parseInt(codigo));
             rtdo = pstm.executeUpdate(); 
