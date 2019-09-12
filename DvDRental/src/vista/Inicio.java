@@ -20,7 +20,7 @@ public class Inicio extends JFrame {
     private JMenu menu0,menu1, menu2,menu3,menu4;
     private JMenuItem menu0Item1, menu0Item2;
     private JMenuItem menu1Item1, menu1Item2,menu1Item3,menu1Item4;
-    private JMenuItem menu2Item1;  
+    private JMenuItem menu2Item1,menu2Item2;  
     private JMenuItem menu3Item1;
     private JDesktopPane JDPanel;
     private Container contenedor;
@@ -54,7 +54,8 @@ public class Inicio extends JFrame {
         
         menu2=new JMenu("Ubicaciones");
         menu2Item1= new JMenuItem("Gestionar Paises");
-        menu2.add(menu2Item1);
+        menu2Item2=new JMenuItem("Gestionar Ciudades");
+        menu2.add(menu2Item1); menu2.add(menu2Item2);
         
         menu3=new JMenu("Clientes");
         menu3Item1=new JMenuItem("Gestionar Clientes");
@@ -113,6 +114,11 @@ public class Inicio extends JFrame {
                menu2Item1PaisesActionPerformed( evt);
             }
         });
+        menu2Item2.addActionListener(new java.awt.event.ActionListener() {          
+            public void actionPerformed(ActionEvent evt) {
+               menu2Item2ActionPerformed(evt);
+            }
+        });
         
         menu3Item1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -145,6 +151,9 @@ public class Inicio extends JFrame {
     public void menu2Item1PaisesActionPerformed(ActionEvent evt){
         centrar(menu2Item1.getText());
     }
+    public void menu2Item2ActionPerformed(ActionEvent evt){
+        centrar(menu2Item2.getText());
+    }
     public void menu3Item1ClientesActionPerformed(ActionEvent evt){
         centrar(menu3Item1.getText());
     }
@@ -169,6 +178,9 @@ public class Inicio extends JFrame {
         }
         if(texto.equalsIgnoreCase("Modificar Actores")){
             v = new VModificarActores();
+        }
+        if(texto.equalsIgnoreCase("Gestionar Ciudades")){
+            v=new VModificarCiudad();
         }
          
         int x = (JDPanel.getWidth() / 2) - v.getWidth() /2;
