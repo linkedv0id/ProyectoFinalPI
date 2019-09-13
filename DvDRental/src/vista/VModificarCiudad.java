@@ -109,16 +109,41 @@ public class VModificarCiudad extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Controles"));
 
         jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
 
         jbRegistrar.setEnabled(false);
         jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jbBorrar.setText("Borrar");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
 
         jbCancelar.setEnabled(false);
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -221,6 +246,191 @@ public class VModificarCiudad extends javax.swing.JInternalFrame {
             
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        // TODO add your handling code here:
+        txtID.setText("");  
+        txtCiudad.setText("");
+        jcPais.setSelectedIndex(0);
+        
+        if(jbNuevo.getText().equals("Nuevo")){
+            jbRegistrar.setEnabled(true);
+            txtID.setEnabled(true);
+            txtCiudad.setEnabled(true);            
+            jcPais.setEnabled(true);           
+            jbModificar.setEnabled(false);
+            jbNuevo.setText("Cancelar");
+            jbBorrar.setEnabled(false);
+            jTable1.setEnabled(false);
+            jTable1.setVisible(false);
+            txtID.requestFocusInWindow();
+        }
+        else{
+            jbRegistrar.setEnabled(false);
+            txtID.setEnabled(false);
+            txtCiudad.setEnabled(false);                      
+            jcPais.setEnabled(false);             
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+        }
+        
+    }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(this,"Ingrese el ID de la Pelicula");
+        else{
+            if (jcPais.getSelectedItem().toString().trim().
+                    equals("Seleccionar") ){
+                JOptionPane.showMessageDialog(this,"Seleccione Pais");
+                jcPais.requestFocusInWindow(); }               
+            else {
+                Ciudad ciudad= new Ciudad();
+                ciudad.setID(Integer.parseInt(txtID.getText()));
+                ciudad.setCiudad(txtCiudad.getText());                
+                ciudad.setPaisID(jcPais.getSelectedIndex());
+                
+                
+                int tamaño;
+                tamaño=ControladorCiudad.listadoCiudades(ciudad.getID()+"").size();
+                
+                if(tamaño==0){
+                int resultado = 0;
+                    resultado = ControladorCiudad.grabarCiudad(ciudad);
+                    if(resultado == 1){
+                        JOptionPane.showMessageDialog(this,
+                                "Registro Grabado con éxito",
+                                "Confirmación",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Error al grabar",
+                                "Confirmación",JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    cargarCiudades();
+
+            jbRegistrar.setEnabled(false);
+            txtID.setEnabled(false);
+            txtCiudad.setEnabled(false);                      
+            jcPais.setEnabled(false);             
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+                                       
+            }else{
+                   JOptionPane.showMessageDialog(this,
+                           "IDya registrado","Confirmación",
+                           JOptionPane.ERROR_MESSAGE); 
+                   txtID.requestFocusInWindow();
+                }
+                
+          
+            }
+        }
+        
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // TODO add your handling code here:
+        if(jbModificar.getText().equalsIgnoreCase("Modificar")){
+            if(jTable1.getSelectedRow() == -1){
+               if(jTable1.getRowCount() == 0){
+                   JOptionPane.showMessageDialog(this,"No hay registros");
+               }else{
+                   JOptionPane.showMessageDialog(this,"Seleccione una fila");
+               }
+            }else{    
+                
+            jbNuevo.setEnabled(false);
+            txtCiudad.setEnabled(true);            
+            jcPais.setEnabled(true);                      
+            jbModificar.setText("Actualizar");
+            jbBorrar.setEnabled(false);            
+            jbCancelar.setEnabled(true);
+           
+             }
+        }else {
+            
+            jbNuevo.setEnabled(true);
+            txtCiudad.setEnabled(false);                      
+            jcPais.setEnabled(false);             
+            jbModificar.setText("Modificar");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);                                 
+            jbCancelar.setEnabled(false);
+            jTable1.setEnabled(true);
+             
+            //Se crea el objeto Ciudad
+             Ciudad ciudad = new Ciudad();
+             
+             //Se configura los datos en el objeto programa de la clase
+             //Ciudad
+             ciudad.setID(Integer.parseInt(txtID.getText()));
+             ciudad.setCiudad(txtCiudad.getText());  
+             ciudad.setPaisID(jcPais.getSelectedIndex());            
+             
+                         
+             if(ControladorCiudad.modificarCiudad(ciudad) == 1){
+                 JOptionPane.showMessageDialog(this,"Actualización exitosa");
+                 this.cargarCiudades();
+             } else {
+                 JOptionPane.showMessageDialog(this,"Actualización Fallida");
+             }
+             
+        }
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor seleccione una Ciudad","Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            int respuesta = JOptionPane.showConfirmDialog(this,
+                    "¿Desea Eliminar la Ciudad con el codigo : " +
+                            txtID.getText().trim()+
+                    " ?", "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                String codigo = "";
+                codigo  = txtID.getText().trim();
+                
+                if(ControladorCiudad.borrarCiudad(codigo) == 1){
+                    JOptionPane.showMessageDialog(this, 
+                            "Registro Borrado con éxtio", 
+                            "Confirmación de acción", 
+                            JOptionPane.INFORMATION_MESSAGE);                    
+                    cargarCiudades();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, 
+                            "Error al borrar", "Confirmación de acción", 
+                            JOptionPane.ERROR_MESSAGE);                    
+                }
+            }
+        }
+    }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        // TODO add your handling code here:
+        txtID.setEnabled(false);
+        txtCiudad.setEnabled(false);                  
+        jcPais.setEnabled(false);             
+        jbBorrar.setEnabled(true);
+        jbNuevo.setEnabled(true);
+        jbRegistrar.setEnabled(false);
+        jbModificar.setText("Modificar");
+        jbCancelar.setEnabled(false);
+        jTable1.setEnabled(true);
+    }//GEN-LAST:event_jbCancelarActionPerformed
 
      private void cargarCiudades(){
         DefaultTableModel modelo;

@@ -5,6 +5,12 @@
  */
 package vista;
 
+import control.ControladorPais;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Pais;
+
 /**
  *
  * @author Cesar Solano
@@ -27,8 +33,6 @@ public class VModificarPaises extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jlID = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -40,20 +44,7 @@ public class VModificarPaises extends javax.swing.JInternalFrame {
         jbModificar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -63,15 +54,46 @@ public class VModificarPaises extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nombre Pais:");
 
-        jbNuevo.setText("Nuevo");
+        txtID.setEnabled(false);
 
+        txtNombre.setEnabled(false);
+
+        jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
+
+        jbRegistrar.setEnabled(false);
         jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         jbBorrar.setText("Borrar");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
+        jbCancelar.setEnabled(false);
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,9 +115,9 @@ public class VModificarPaises extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,7 +145,7 @@ public class VModificarPaises extends javax.swing.JInternalFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -131,7 +153,13 @@ public class VModificarPaises extends javax.swing.JInternalFrame {
                 "ID Pais", "Nombre"
             }
         ));
-        jScrollPane1.setViewportView(jTable2);
+        cargarPaises();
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,14 +184,220 @@ public class VModificarPaises extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable1.getModel();
+        if(jTable1.getSelectedRow()==-1){
+            if(jTable1.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"No hay registros");
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Seleccione una fila");
+            }
+        }else {
+                                  
+            txtID.setText(modelo.getValueAt(
+                    jTable1.getSelectedRow(), 0).toString());            
+            txtNombre.setText(modelo.getValueAt(
+                    jTable1.getSelectedRow(), 1).toString());            
+            
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        // TODO add your handling code here:
+        txtID.setText("");  
+        txtNombre.setText("");
+        
+        
+        if(jbNuevo.getText().equals("Nuevo")){
+            jbRegistrar.setEnabled(true);
+            txtID.setEnabled(true);
+            txtNombre.setEnabled(true);        
+            jbModificar.setEnabled(false);
+            jbNuevo.setText("Cancelar");
+            jbBorrar.setEnabled(false);
+            jTable1.setEnabled(false);
+            jTable1.setVisible(false);
+            txtID.requestFocusInWindow();
+        }
+        else{
+            jbRegistrar.setEnabled(false);
+            txtID.setEnabled(false);
+            txtNombre.setEnabled(false);    
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Ingrese el ID de la Pelicula");
+                      
+        }else {
+                Pais pais= new Pais();
+                pais.setID(Integer.parseInt(txtID.getText()));
+                pais.setPais(txtNombre.getText());                
+                
+                
+                
+                int tamaño;
+                tamaño=ControladorPais.listadoPaises(pais.getID()+"").size();
+                
+                if(tamaño==0){
+                int resultado = 0;
+                    resultado = ControladorPais.grabarPais(pais);
+                    if(resultado == 1){
+                        JOptionPane.showMessageDialog(this,
+                                "Registro Grabado con éxito",
+                                "Confirmación",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Error al grabar",
+                                "Confirmación",JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    cargarPaises();
+
+            jbRegistrar.setEnabled(false);
+            txtID.setEnabled(false);
+            txtNombre.setEnabled(false);  
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+                                       
+            }else{
+                   JOptionPane.showMessageDialog(this,
+                           "IDya registrado","Confirmación",
+                           JOptionPane.ERROR_MESSAGE); 
+                   txtID.requestFocusInWindow();
+                }
+                
+          
+            }
+        
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor seleccione un Pais","Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            int respuesta = JOptionPane.showConfirmDialog(this,
+                    "¿Desea Eliminar el Pais con el codigo : " +
+                            txtID.getText().trim()+
+                    " ?", "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                String codigo = "";
+                codigo  = txtID.getText().trim();
+                
+                if(ControladorPais.borrarPais(codigo) == 1){
+                    JOptionPane.showMessageDialog(this, 
+                            "Registro Borrado con éxtio", 
+                            "Confirmación de acción", 
+                            JOptionPane.INFORMATION_MESSAGE);                    
+                    cargarPaises();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, 
+                            "Error al borrar", "Confirmación de acción", 
+                            JOptionPane.ERROR_MESSAGE);                    
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // TODO add your handling code here:
+        if(jbModificar.getText().equalsIgnoreCase("Modificar")){
+            if(jTable1.getSelectedRow() == -1){
+               if(jTable1.getRowCount() == 0){
+                   JOptionPane.showMessageDialog(this,"No hay registros");
+               }else{
+                   JOptionPane.showMessageDialog(this,"Seleccione una fila");
+               }
+            }else{    
+                
+            jbNuevo.setEnabled(false);
+            txtNombre.setEnabled(true);   
+            jbModificar.setText("Actualizar");
+            jbBorrar.setEnabled(false);            
+            jbCancelar.setEnabled(true);
+           
+             }
+        }else {
+            
+            jbNuevo.setEnabled(true);
+            txtNombre.setEnabled(false);     
+            jbModificar.setText("Modificar");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);                                 
+            jbCancelar.setEnabled(false);
+            jTable1.setEnabled(true);
+             
+            //Se crea el objeto Pais
+             Pais pais = new Pais();             
+             //Se configura los datos en el objeto pais de la clase
+             //Pais
+             
+             pais.setID(Integer.parseInt(txtID.getText()));
+             pais.setPais(txtNombre.getText());  
+                         
+             
+                         
+             if(ControladorPais.modificarPais(pais) == 1){
+                 JOptionPane.showMessageDialog(this,"Actualización exitosa");
+                 this.cargarPaises();
+             } else {
+                 JOptionPane.showMessageDialog(this,"Actualización Fallida");
+             }
+             
+        }
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        // TODO add your handling code here:
+        txtID.setEnabled(false);
+        txtNombre.setEnabled(false);  
+        jbBorrar.setEnabled(true);
+        jbNuevo.setEnabled(true);
+        jbRegistrar.setEnabled(false);
+        jbModificar.setText("Modificar");
+        jbCancelar.setEnabled(false);
+        jTable1.setEnabled(true);
+    }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void cargarPaises(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable1.getModel();
+        ArrayList <Pais> listadoPaises =new ArrayList();
+        listadoPaises=ControladorPais.listadoPaises("0");
+        for(int i= 0; i < listadoPaises.size(); i++){                       
+              modelo.addRow(new Object[]{
+              listadoPaises.get(i).getID(),
+              listadoPaises.get(i).getPais(),                         
+                 
+              });
+        }    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton jbBorrar;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbModificar;

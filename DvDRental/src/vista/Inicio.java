@@ -16,12 +16,13 @@ import javafx.scene.layout.Border;
  * @author user
  */
 public class Inicio extends JFrame {
-    private JMenuBar barraMenu;
+     private JMenuBar barraMenu;
     private JMenu menu0,menu1, menu2,menu3,menu4;
     private JMenuItem menu0Item1, menu0Item2;
     private JMenuItem menu1Item1, menu1Item2,menu1Item3,menu1Item4;
-    private JMenuItem menu2Item1,menu2Item2;  
+    private JMenuItem menu2Item1,menu2Item2,menu2Item3;  
     private JMenuItem menu3Item1;
+    private JMenuItem menu4Item1, menu4Item2,menu4Item3;
     private JDesktopPane JDPanel;
     private Container contenedor;
     
@@ -55,11 +56,18 @@ public class Inicio extends JFrame {
         menu2=new JMenu("Ubicaciones");
         menu2Item1= new JMenuItem("Gestionar Paises");
         menu2Item2=new JMenuItem("Gestionar Ciudades");
-        menu2.add(menu2Item1); menu2.add(menu2Item2);
+        menu2Item3=new JMenuItem("Listado de Direcciones");
+        menu2.add(menu2Item1); menu2.add(menu2Item2); menu2.add(menu2Item3);
         
         menu3=new JMenu("Clientes");
         menu3Item1=new JMenuItem("Gestionar Clientes");
         menu3.add(menu3Item1);
+        
+        menu4=new JMenu("Administracion");
+        menu4Item1= new JMenuItem("Inventario");
+        menu4Item2=new JMenuItem("Personal");
+        menu4Item3=new JMenuItem("Tiendas");
+        menu4.add(menu4Item1); menu4.add(menu4Item2);menu4.add(menu4Item3);
         
         
         
@@ -67,6 +75,7 @@ public class Inicio extends JFrame {
         //
         
         barraMenu.add(menu0); barraMenu.add(menu1); barraMenu.add(menu2);barraMenu.add(menu3);
+        barraMenu.add(menu4);
         
         JDPanel=new JDesktopPane();
         contenedor=getContentPane();
@@ -120,6 +129,12 @@ public class Inicio extends JFrame {
             }
         });
         
+        menu2Item3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                menu2Item3DireccionActionPerformed(evt);
+            }
+        });
+        
         menu3Item1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
              menu3Item1ClientesActionPerformed(evt);
@@ -154,6 +169,10 @@ public class Inicio extends JFrame {
     public void menu2Item2ActionPerformed(ActionEvent evt){
         centrar(menu2Item2.getText());
     }
+    public void menu2Item3DireccionActionPerformed(ActionEvent evt){
+        centrar(menu2Item3.getText());
+    }
+    
     public void menu3Item1ClientesActionPerformed(ActionEvent evt){
         centrar(menu3Item1.getText());
     }
@@ -181,6 +200,9 @@ public class Inicio extends JFrame {
         }
         if(texto.equalsIgnoreCase("Gestionar Ciudades")){
             v=new VModificarCiudad();
+        }
+        if(texto.equalsIgnoreCase("Listado de Direcciones")){
+            v=new VDirecciones();
         }
          
         int x = (JDPanel.getWidth() / 2) - v.getWidth() /2;
