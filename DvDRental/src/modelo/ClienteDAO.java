@@ -27,7 +27,7 @@ public class ClienteDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "DELETE FROM customet WHERE customer_id = ? ";
+            String sql = "DELETE FROM customer WHERE customer_id = ? ";
             pstm = con.prepareStatement(sql);
             pstm.setInt(1,Integer.parseInt(codigo));
             rtdo = pstm.executeUpdate(); 
@@ -50,7 +50,7 @@ public class ClienteDAO {
     }
     
     
-    public int grabarCliente(Pelicula p){
+    public int grabarCliente(Cliente c){
         Connection con = null;
         PreparedStatement pstm;
         pstm = null;
@@ -59,23 +59,16 @@ public class ClienteDAO {
         
          try{
             con = Fachada.getConnection();
-            String sql = "INSERT INTO film values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO customer values (?,?,?,?,?,?,?)";
             pstm = con.prepareStatement(sql);
             
-            pstm.setInt(1, p.getID());
-            pstm.setString(2, p.getTitulo());
-            pstm.setString(3,p.getDescripcion());
-            pstm.setInt(4,p.getAño());
-            pstm.setInt(5,p.getLenguaje());
-            pstm.setInt(6,p.getDuracionRenta());
-            pstm.setDouble(7,p.getTasa());
-            pstm.setInt(8,p.getTamaño());
-            pstm.setDouble(9,p.getCosto());
-            pstm.setObject(10, null);
-            pstm.setTimestamp(11, new Timestamp(1,1,1,1,1,1,1));
-            pstm.setObject(12,null);
-            pstm.setObject(13,null);
-            
+            pstm.setInt(1, c.getID());
+            pstm.setInt(2, c.getTiendaID());
+            pstm.setString(3,c.getNombre());
+            pstm.setString(4,c.getApellido());
+            pstm.setString(5,c.getEmail());
+            pstm.setInt(6,c.getDireccionID());
+            pstm.setBoolean(7,c.getActivado());
             
             rtdo = pstm.executeUpdate();  
         }
@@ -120,8 +113,7 @@ public class ClienteDAO {
                         
             while(rs.next()){
                 Cliente cliente = new Cliente();
-                cliente.setID(rs.getInt("customer_id"));
-                
+                cliente.setID(rs.getInt("customer_id"));                
                 cliente.setTiendaID(rs.getInt("store_id"));               
                 cliente.setNombre(rs.getString("first_name"));
                 cliente.setApellido(rs.getString("last_name"));
@@ -160,7 +152,7 @@ public class ClienteDAO {
         return listado;
     }
     
-    public int modificarCliente(Pelicula p){      
+    public int modificarCliente(Cliente c){      
         Connection con = null;
         PreparedStatement pstm;
         pstm = null;
@@ -168,20 +160,19 @@ public class ClienteDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "UPDATE film " +
-                         "SET title = ?, description = ?, release_year = ?,"
-                    + "language_id=?,rental_duration=?,rental_rate=?,length=?,replacement_cost=? "
-                    +    "WHERE film_id=?";
+            String sql = "UPDATE customer " +
+                         "SET store_id = ?, first_name = ?, last_name = ?,"
+                    + "email=?,address_id=?,activebool=? "
+                    +    "WHERE customer_id=?";
             pstm = con.prepareStatement(sql);            
-            pstm.setString(1, p.getTitulo());
-            pstm.setString(2, p.getDescripcion());
-            pstm.setInt(3, p.getAño());
-            pstm.setInt(4, p.getLenguaje());
-            pstm.setInt(5,p.getDuracionRenta());
-            pstm.setDouble(6,p.getTasa());
-            pstm.setInt(7,p.getTamaño());
-            pstm.setDouble(8,p.getCosto());
-            pstm.setInt(9,p.getID());
+            pstm.setInt(1, c.getTiendaID());
+            pstm.setString(2, c.getNombre());
+            pstm.setString(3, c.getApellido());
+            pstm.setString(4, c.getEmail());
+            pstm.setInt(5,c.getDireccionID());
+            pstm.setBoolean(6,c.getActivado());
+           
+            pstm.setInt(79,c.getID());
             
             rtdo = pstm.executeUpdate();  
         }

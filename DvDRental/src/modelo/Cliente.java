@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.sql.Date;
+
 
 
 /**
@@ -19,7 +21,7 @@ public class Cliente {
     private String email;
     private int direccionID;
     private boolean activado;
-    //private date fechaCreacion;
+    private Date fechaCreacion;
     private int activo;
     
     public Cliente(){}
