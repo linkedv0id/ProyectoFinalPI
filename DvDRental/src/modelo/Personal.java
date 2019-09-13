@@ -35,15 +35,15 @@ public class Personal {
     public void setDireccionID(int direccionID){this.direccionID=direccionID;}
     
     public String getEmail(){return email;}
-    public void setEmeail(String email){this.email=email;}
+    public void setEmail(String email){this.email=email;}
     
     public int getTiendaID(){return id;}
     public void setTiendaID(int tiendaID){this.tiendaID=tiendaID;}
     
     public boolean getActivado(){return activado;}
-    public void setActvado(boolean activado){this.activado=activado;}
+    public void setActivado(boolean activado){this.activado=activado;}
     
-    public String getNOmbreUsuario(){return nombreUsuario;}
+    public String getNombreUsuario(){return nombreUsuario;}
     public void setNombreUsuario(String nombreUsuario){this.nombreUsuario=nombreUsuario;}
     
     public String getContraseña(){return contraseña;}

@@ -141,6 +141,12 @@ public class Inicio extends JFrame {
             }
         });
         
+        menu4Item3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+             menu4Item3TiendasActionPerformed(evt);
+            }
+        });
+        
         
         
     }
@@ -176,6 +182,9 @@ public class Inicio extends JFrame {
     public void menu3Item1ClientesActionPerformed(ActionEvent evt){
         centrar(menu3Item1.getText());
     }
+    public void menu4Item3TiendasActionPerformed(ActionEvent evt){
+        centrar(menu4Item3.getText());
+    }
     
     
      public void centrar(String texto){
@@ -203,6 +212,9 @@ public class Inicio extends JFrame {
         }
         if(texto.equalsIgnoreCase("Listado de Direcciones")){
             v=new VDirecciones();
+        }
+        if(texto.equalsIgnoreCase("Tiendas")){
+            v=new VModificarTiendas();
         }
          
         int x = (JDPanel.getWidth() / 2) - v.getWidth() /2;
