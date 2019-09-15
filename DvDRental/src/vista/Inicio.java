@@ -22,7 +22,7 @@ public class Inicio extends JFrame {
     private JMenuItem menu1Item1, menu1Item2,menu1Item3,menu1Item4;
     private JMenuItem menu2Item1,menu2Item2,menu2Item3;  
     private JMenuItem menu3Item1;
-    private JMenuItem menu4Item1, menu4Item2,menu4Item3;
+    private JMenuItem menu4Item1, menu4Item2,menu4Item3,menu4Item4;
     private JDesktopPane JDPanel;
     private Container contenedor;
     
@@ -67,7 +67,8 @@ public class Inicio extends JFrame {
         menu4Item1= new JMenuItem("Inventario");
         menu4Item2=new JMenuItem("Personal");
         menu4Item3=new JMenuItem("Tiendas");
-        menu4.add(menu4Item1); menu4.add(menu4Item2);menu4.add(menu4Item3);
+        menu4Item4=new JMenuItem("Renta");
+        menu4.add(menu4Item1); menu4.add(menu4Item2);menu4.add(menu4Item3);menu4.add(menu4Item4);
         
         
         
@@ -147,6 +148,12 @@ public class Inicio extends JFrame {
             }
         });
         
+        menu4Item4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+             menu4Item4RentaActionPerformed(evt);
+            }
+        });
+        
         
         
     }
@@ -184,6 +191,9 @@ public class Inicio extends JFrame {
     }
     public void menu4Item3TiendasActionPerformed(ActionEvent evt){
         centrar(menu4Item3.getText());
+    }
+    public void menu4Item4RentaActionPerformed(ActionEvent evt){
+        centrar(menu4Item4.getText());
     }
     
     

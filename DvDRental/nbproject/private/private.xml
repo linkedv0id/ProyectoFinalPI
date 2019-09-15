@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/ProyectoFinalPI/DvDRental/src/vista/Inicio.java</file>
+            <file>file:/home/liquidv0id/Desktop/ProyectoFinalPI/DvDRental/src/modelo/Pais.java</file>
+            <file>file:/home/liquidv0id/Desktop/ProyectoFinalPI/DvDRental/src/control/ControladorPais.java</file>
+            <file>file:/home/liquidv0id/Desktop/ProyectoFinalPI/DvDRental/src/modelo/Renta.java</file>
+            <file>file:/home/liquidv0id/Desktop/ProyectoFinalPI/DvDRental/src/servicios/Fachada.java</file>
         </group>
     </open-files>
 </project-private>
