@@ -105,7 +105,7 @@ public class TiendaDAO {
             while(rs.next()){
                 Tienda tienda=new Tienda();
                 tienda.setID(rs.getInt("store_id"));
-                tienda.setGerenteID(rs.getInt("manager_store_id"));
+                tienda.setGerenteID(rs.getInt("manager_staff_id"));
                 tienda.setDireccionID(rs.getInt("address_id"));
                
                 //

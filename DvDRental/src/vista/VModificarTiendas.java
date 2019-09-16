@@ -6,10 +6,16 @@
 package vista;
 
 import control.ControladorCiudad;
+import control.ControladorDireccion;
 import control.ControladorPersonal;
+import control.ControladorTienda;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Ciudad;
+import modelo.Direccion;
 import modelo.Personal;
+import modelo.Tienda;
 
 /**
  *
@@ -50,6 +56,7 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
         txtTelefono = new javax.swing.JTextField();
         jcGerente = new javax.swing.JComboBox();
         jcCiudad = new javax.swing.JComboBox();
+        txtDireccionID = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jbNuevo = new javax.swing.JButton();
         jbRegistrar = new javax.swing.JButton();
@@ -67,7 +74,7 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
 
         jlID.setText("ID:");
 
-        jlDireccion.setText("Direccion:");
+        jlDireccion.setText("Direccion/ ID:");
 
         jlDireccion2.setText("Direccion 2:");
 
@@ -81,35 +88,47 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
 
         jlGerente.setText("Gerente:");
 
+        txtID.setEnabled(false);
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
             }
         });
 
+        txtDireccion.setEnabled(false);
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionActionPerformed(evt);
             }
         });
 
+        txtDireccion2.setEnabled(false);
         txtDireccion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccion2ActionPerformed(evt);
             }
         });
 
+        txtDistrito.setEnabled(false);
+
+        txtCodigo.setEnabled(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
             }
         });
 
+        txtTelefono.setEnabled(false);
+
+        jcGerente.setEnabled(false);
         jcGerente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         cargarEmpleadosCombo();
 
+        jcCiudad.setEnabled(false);
         jcCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
         cargarCiudadesCombo();
+
+        txtDireccionID.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,10 +160,14 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlDireccion)
                             .addComponent(jlID))
-                        .addGap(41, 41, 41)
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtDireccionID, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +179,8 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlDireccion)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccionID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlDireccion2)
@@ -187,13 +211,25 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
 
+        jbRegistrar.setEnabled(false);
         jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
 
         jbBorrar.setText("Borrar");
 
+        jbCancelar.setEnabled(false);
         jbCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -206,9 +242,8 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
                     .addComponent(jbRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbModificar)
                     .addComponent(jbNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jbBorrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jbBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -235,7 +270,13 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
                 "ID", "Gerente","Direccion ID"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        cargarTiendas();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,6 +325,158 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:        
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable1.getModel();
+        if(jTable1.getSelectedRow()==-1){
+            if(jTable1.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"No hay registros");
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Seleccione una fila");
+            }
+        }else {
+                                  
+            txtID.setText(modelo.getValueAt(
+                    jTable1.getSelectedRow(), 0).toString());            
+            jcGerente.setSelectedItem(modelo.getValueAt(
+                    jTable1.getSelectedRow(), 1).toString());   
+            obtenerDireccion(modelo.getValueAt(jTable1.getSelectedRow(),2).toString());
+            
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        // TODO add your handling code here:
+        ArrayList <Tienda> listadoTiendas =new ArrayList();               
+        listadoTiendas=ControladorTienda.listadoTiendas("0");
+        ArrayList <Direccion> listadoDireccion =new ArrayList();               
+        listadoDireccion=ControladorDireccion.listadoDirecciones("0");
+        
+        txtID.setText(listadoTiendas.size()+1+"");  
+        txtDireccion.setText("");
+        txtDireccion2.setText("");
+        txtDistrito.setText("");
+        txtTelefono.setText("");
+        txtCodigo.setText("");
+        txtDireccionID.setText(listadoDireccion.get(listadoDireccion.size()-1).getID()+1+"");
+        jcCiudad.setSelectedIndex(0); 
+        jcGerente.setSelectedIndex(0);        
+        
+        
+        if(jbNuevo.getText().equals("Nuevo")){
+            jbRegistrar.setEnabled(true);
+            
+            txtDireccion.setEnabled(true);  
+            txtDireccion2.setEnabled(true);
+            txtDistrito.setEnabled(true);
+            txtTelefono.setEnabled(true);
+            jcCiudad.setEnabled(true);
+            jcGerente.setEnabled(true);
+            
+            
+            jbModificar.setEnabled(false);
+            jbNuevo.setText("Cancelar");
+            jbBorrar.setEnabled(false);
+            jTable1.setEnabled(false);
+            jTable1.setVisible(false);
+            txtID.requestFocusInWindow();
+        }
+        else{
+            jbRegistrar.setEnabled(false);
+            
+            txtDireccion.setEnabled(false); 
+            txtDireccion.setEnabled(false);  
+            txtDireccion2.setEnabled(false);
+            txtDistrito.setEnabled(false);
+            txtTelefono.setEnabled(false);
+            jcCiudad.setEnabled(false);
+            jcGerente.setEnabled(false);
+                        
+           
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+        }
+        
+        
+    }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        // TODO add your handling code here:
+                Tienda tienda= new Tienda();
+                tienda.setID(Integer.parseInt(txtID.getText()));
+                tienda.setGerenteID(jcGerente.getSelectedIndex());
+                tienda.setDireccionID(Integer.parseInt(txtDireccionID.getText()));
+                
+                Direccion direccion= new Direccion();
+                direccion.setID(Integer.parseInt(txtDireccionID.getText()));
+                direccion.setDireccion(txtDireccion.getText());
+                direccion.setCiudadID(jcCiudad.getSelectedIndex());
+                direccion.setCodigoPostal(txtCodigo.getText());
+                direccion.setDireccion2(txtDireccion2.getText());
+                direccion.setTelefono(txtTelefono.getText());
+                direccion.setDistrito(txtDistrito.getText());
+                
+                
+                
+                
+                int tamaño;
+                tamaño=ControladorDireccion.listadoDirecciones(direccion.getID()+"").size();
+                
+                if(tamaño==0){
+                int resultado = 0;
+                    resultado = ControladorDireccion.grabarDireccion(direccion);
+                    if(resultado == 1){
+                        JOptionPane.showMessageDialog(this,
+                                "Registro Grabado con éxito",
+                                "Confirmación",JOptionPane.INFORMATION_MESSAGE);
+                        
+                        int tamaño2;
+                        tamaño2=ControladorTienda.listadoTiendas(tienda.getID()+"").size();
+                        if(tamaño2==0){
+                            int resultado2=0;
+                            resultado2=ControladorTienda.grabarTienda(tienda);
+                            
+                        }
+                        
+                        
+                        
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Error al grabar",
+                                "Confirmación",JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    cargarTiendas();
+
+            jbRegistrar.setEnabled(false);
+            txtID.setEnabled(false);
+            txtDireccion.setEnabled(false);  
+            
+            
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+                                       
+            }else{
+                   JOptionPane.showMessageDialog(this,
+                           "IDya registrado","Confirmación",
+                           JOptionPane.ERROR_MESSAGE); 
+                   txtID.requestFocusInWindow();
+                }
+                
+          
+            
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
     private void cargarCiudadesCombo(){
         ArrayList<Ciudad> listaCiudades = new ArrayList();
           listaCiudades=ControladorCiudad.listadoCiudades("0");
@@ -292,6 +485,19 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
               jcCiudad.addItem(listaCiudades.get(i).getCiudad());
                             
           }
+    }
+    private void obtenerDireccion(String direccionID){
+          ArrayList<Direccion> listaDirecciones = new ArrayList();
+          listaDirecciones=ControladorDireccion.listadoDirecciones(direccionID);
+          txtDireccion.setText(listaDirecciones.get(0).getDireccion());
+          txtDireccion2.setText(listaDirecciones.get(0).getDireccion2());
+          txtDistrito.setText(listaDirecciones.get(0).getDistrito());
+          txtTelefono.setText(listaDirecciones.get(0).getTelefono());
+          txtCodigo.setText(listaDirecciones.get(0).getCodigoPostal());
+          jcCiudad.setSelectedIndex(listaDirecciones.get(0).getCiudadID());
+          txtDireccionID.setText(listaDirecciones.get(0).getID()+"");
+          
+        
     }
     private void cargarEmpleadosCombo(){
        ArrayList<Personal> listaPersonal = new ArrayList();
@@ -302,6 +508,28 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
                             
           }
     }
+    private void cargarTiendas(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable1.getModel();
+        ArrayList <Tienda> listadoTiendas =new ArrayList();
+        ArrayList<Personal> listaPersonal = new ArrayList();
+        listaPersonal=ControladorPersonal.listadoPersonal("0");
+        listadoTiendas=ControladorTienda.listadoTiendas("0");
+        for(int i= 0; i < listadoTiendas.size(); i++){                       
+              modelo.addRow(new Object[]{
+              listadoTiendas.get(i).getID(),             
+              buscarGerente(listadoTiendas.get(i).getGerenteID()), 
+              listadoTiendas.get(i).getDireccionID()
+                 
+              });
+        }    
+    }
+    public String buscarGerente(int id){
+        ArrayList<Personal> listaPersonal = new ArrayList();
+        listaPersonal=ControladorPersonal.listadoPersonal(id+"");
+        return listaPersonal.get(0).getNombre()+" "+listaPersonal.get(0).getApellido();
+    }
+            
     
     
     
@@ -329,6 +557,7 @@ public class VModificarTiendas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDireccion2;
+    private javax.swing.JTextField txtDireccionID;
     private javax.swing.JTextField txtDistrito;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtTelefono;

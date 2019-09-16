@@ -726,6 +726,7 @@ public class VModificarPeliculas extends javax.swing.JInternalFrame {
     }
     private void cargarPeliculas(String c){    
         //traer el listado de peliculas 
+        limpiarTabla();
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList<Pelicula> listadoPeliculas = new ArrayList();
@@ -751,6 +752,13 @@ public class VModificarPeliculas extends javax.swing.JInternalFrame {
                       
               });
              
+        }
+    }
+    private void limpiarTabla(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable1.getModel();
+        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+            modelo.removeRow(i);
         }
     }
 

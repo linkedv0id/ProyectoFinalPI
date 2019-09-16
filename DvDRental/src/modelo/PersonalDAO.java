@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package modelo;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -59,8 +62,17 @@ public class PersonalDAO {
         
          try{
             con = Fachada.getConnection();
-            String sql = "INSERT INTO staff values (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO staff values (?,?,?,?,?,?,?,?,?,?,?)";
             pstm = con.prepareStatement(sql);
+            
+             File file = p.getFoto();
+            FileInputStream fis = null;
+            try {
+                fis = new FileInputStream(file);
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "\nError :" + ex.getMessage());                
+            }
+            
             
             pstm.setInt(1, p.getID());
             pstm.setString(2, p.getNombre());
@@ -71,6 +83,8 @@ public class PersonalDAO {
             pstm.setBoolean(7,p.getActivado());
             pstm.setString(8,p.getNombreUsuario());
             pstm.setString(9,p.getContraseña());
+            pstm.setTimestamp(10, null);
+            pstm.setBinaryStream(11, fis, (int)file.length());
                        
             
             rtdo = pstm.executeUpdate();  
@@ -123,6 +137,7 @@ public class PersonalDAO {
                 personal.setActivado(rs.getBoolean("active"));
                 personal.setNombreUsuario(rs.getString(("username")));
                 personal.setContraseña(rs.getString("password"));
+                
                 
                 //
                 //

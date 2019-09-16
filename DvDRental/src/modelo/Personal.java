@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.File;
 /**
  *
  * @author user
@@ -19,6 +20,9 @@ public class Personal {
     private boolean activado;
     private String nombreUsuario;
     private String contraseña;
+    private String last_uptade;
+    private byte[] picture;
+    private File foto;
     
     public Personal(){}
     
@@ -48,5 +52,30 @@ public class Personal {
     
     public String getContraseña(){return contraseña;}
     public void setContraseña(String contraseña){this.contraseña=contraseña;}
+    
+    public String getLast_uptade() {
+        return last_uptade;
+    }
+
+    public void setLast_uptade(String last_uptade) {
+        this.last_uptade = last_uptade;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+    
+    public File getFoto() {
+        return foto;
+    }
+
+    public void setFoto(File foto) {
+        this.foto = foto;
+    }
+    
     
 }

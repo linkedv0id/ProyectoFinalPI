@@ -142,6 +142,14 @@ public class Inicio extends JFrame {
             }
         });
         
+        menu4Item2.addActionListener(new java.awt.event.ActionListener() {           
+            public void actionPerformed(ActionEvent evt) {
+                menu4Item2PersonalActionPerformed(evt);
+            }
+        })
+        ;
+                
+        
         menu4Item3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
              menu4Item3TiendasActionPerformed(evt);
@@ -189,6 +197,9 @@ public class Inicio extends JFrame {
     public void menu3Item1ClientesActionPerformed(ActionEvent evt){
         centrar(menu3Item1.getText());
     }
+    public void menu4Item2PersonalActionPerformed(ActionEvent evt){
+        centrar(menu4Item2.getText());
+    }
     public void menu4Item3TiendasActionPerformed(ActionEvent evt){
         centrar(menu4Item3.getText());
     }
@@ -225,6 +236,9 @@ public class Inicio extends JFrame {
         }
         if(texto.equalsIgnoreCase("Tiendas")){
             v=new VModificarTiendas();
+        }
+        if(texto.equalsIgnoreCase("Personal")){
+            v=new VModificarPersonal();
         }
         
         if(texto.equalsIgnoreCase("Renta")){
