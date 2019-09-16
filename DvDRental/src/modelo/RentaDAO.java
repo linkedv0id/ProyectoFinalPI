@@ -148,12 +148,18 @@ public class RentaDAO {
         try{
             con = Fachada.getConnection();
             String sql = "UPDATE renta " +
-                         "SET renta = ? "
+                         "SET renta = (?, ?, ?, ?, ?, ?) "
                     +    "WHERE renta_id=?";
             pstm = con.prepareStatement(sql);            
             //pstm.setString(1, p.getRenta()); //Modify later
-            pstm.setString(1, "");
-            pstm.setInt(2,p.getID());
+
+            pstm.setInt(1, p.getID());
+            pstm.setInt(2, p.getInventarioID());
+            pstm.setInt(3, p.getClienteID());
+            pstm.setInt(4, p.getPersonalID());
+            pstm.setString(5, p.getFecha());
+            pstm.setString(6, p.getFechaRetorno());
+            pstm.setInt(7,p.getID());
             
             rtdo = pstm.executeUpdate();  
         }
