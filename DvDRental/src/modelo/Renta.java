@@ -13,10 +13,10 @@ import java.sql.Date;
  */
 public class Renta {
     private int id;
-    private int fecha;
+    private String fecha;
     private int inventarioID;
     private int clienteID;
-    private Date fechaRetorno;
+    private String fechaRetorno;
     private int personalID;
     
     public Renta(){}
@@ -33,10 +33,10 @@ public class Renta {
     public int getPersonalID(){return personalID;}
     public void setPersonalID(int personalID){this.personalID=personalID;}
     
-    public int getFecha() {return fecha;}
-    public void setFecha(int fecha) {this.fecha = fecha;}
+    public String getFecha() {return fecha;}
+    public void setFecha(String fecha) {this.fecha = fecha;}
     
-    public Date getFechaRetorno() {return fechaRetorno;}
-    public void setFechaRetorno(Date fechaRetorno) {this.fechaRetorno = fechaRetorno;}
+    public String getFechaRetorno() {return fechaRetorno;}
+    public void setFechaRetorno(String fechaRetorno) {this.fechaRetorno = fechaRetorno;}
     
 }

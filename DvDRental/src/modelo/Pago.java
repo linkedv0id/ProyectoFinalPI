@@ -15,7 +15,9 @@ public class Pago {
     private int personalID;
     private int rentaID;
     private double valor;
-    //private date fecha;
+    private String fecha; //fechaPago
+
+    
     
     public Pago(){}
     
@@ -33,5 +35,8 @@ public class Pago {
     
     public double getValor(){return valor;}
     public void setValor(double valor){this.valor=valor;}
+    
+    public String getFecha() {return fecha;}
+    public void setFecha(String fecha) {this.fecha = fecha;}
     
 }
