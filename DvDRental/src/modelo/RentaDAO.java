@@ -56,10 +56,18 @@ public class RentaDAO {
         
          try{
             con = Fachada.getConnection();
-            String sql = "INSERT INTO rental values (?)";
+            String sql = "INSERT INTO rental values (?, ?, ?, ?, ?, ?)";
             pstm = con.prepareStatement(sql);
             
             pstm.setInt(1, p.getID());
+            pstm.setInt(2, p.getClienteID());
+            pstm.setInt(3, p.getInventarioID());
+            pstm.setInt(4, p.getPersonalID());
+            pstm.setString(5, p.getFecha());
+            pstm.setString(6, p.getFechaRetorno());
+            
+            
+            
                          
             rtdo = pstm.executeUpdate();  
         }
@@ -102,9 +110,13 @@ public class RentaDAO {
                         
             while(rs.next()){
                 Renta renta=new Renta();
-                renta.setID(rs.getInt("renta_id"));
-               
-  
+                renta.setID(rs.getInt("id"));
+                renta.setInventarioID(rs.getInt("inventarioID"));
+                renta.setClienteID(rs.getInt("clienteID"));
+                renta.setPersonalID(rs.getInt("personalID"));
+                renta.setFecha(rs.getString("fecha"));
+                renta.setFechaRetorno(rs.getString("fechaRetorno"));
+                
                 listado.add(renta);
                 
             }
