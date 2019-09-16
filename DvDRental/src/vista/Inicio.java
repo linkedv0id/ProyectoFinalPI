@@ -226,6 +226,10 @@ public class Inicio extends JFrame {
         if(texto.equalsIgnoreCase("Tiendas")){
             v=new VModificarTiendas();
         }
+        
+        if(texto.equalsIgnoreCase("Renta")){
+            v=new VModificarRenta();
+        }
          
         int x = (JDPanel.getWidth() / 2) - v.getWidth() /2;
         int y = (JDPanel.getHeight() / 2) - v.getHeight() /2;
