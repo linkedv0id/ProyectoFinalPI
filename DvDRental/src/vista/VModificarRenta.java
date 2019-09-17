@@ -7,9 +7,13 @@ package vista;
 
 import control.ControladorCiudad;
 import control.ControladorPersonal;
+import control.ControladorRenta;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Ciudad;
 import modelo.Personal;
+import modelo.Renta;
 
 /**
  *
@@ -317,8 +321,190 @@ public class VModificarRenta extends javax.swing.JInternalFrame {
                             
           }
     }
-    
-    
+     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        txtID.setText("");  
+        
+        
+        
+        if(jbNuevo.getText().equals("Nuevo")){
+            jbRegistrar.setEnabled(true);
+            txtID.setEnabled(true);
+            jbModificar.setEnabled(false);
+            jbNuevo.setText("Cancelar");
+            jbBorrar.setEnabled(false);
+            jTable1.setEnabled(false);
+            jTable1.setVisible(false);
+            txtID.requestFocusInWindow();
+        }
+        else{
+            jbRegistrar.setEnabled(false);
+            txtID.setEnabled(false); 
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+        }
+    }                                       
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        if(txtID.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Ingrese el ID de la renta");
+                      
+        }else {
+                Renta renta= new Renta();
+                renta.setID(Integer.parseInt(txtID.getText()));
+                
+                
+                
+                int tamaño;
+                tamaño=ControladorRenta.listadoRentas(renta.getID()+"").size();
+                
+                if(tamaño==0){
+                int resultado = 0;
+                    resultado = ControladorRenta.grabarRenta(renta);
+                    if(resultado == 1){
+                        JOptionPane.showMessageDialog(this,
+                                "Registro Grabado con éxito",
+                                "Confirmación",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Error al grabar",
+                                "Confirmación",JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    cargarRentas();
+
+            jbRegistrar.setEnabled(false);
+            txtID.setEnabled(false);
+              
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+                                       
+            }else{
+                   JOptionPane.showMessageDialog(this,
+                           "ID ya registrado","Confirmación",
+                           JOptionPane.ERROR_MESSAGE); 
+                   txtID.requestFocusInWindow();
+                }
+                
+          
+            }
+        
+    }                                           
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(txtID.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor seleccione una renta","Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            int respuesta = JOptionPane.showConfirmDialog(this,
+                    "¿Desea Eliminar la renta con el codigo : " +
+                            txtID.getText().trim()+
+                    " ?", "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                String codigo = "";
+                codigo  = txtID.getText().trim();
+                
+                if(ControladorRenta.borrarRenta(codigo) == 1){
+                    JOptionPane.showMessageDialog(this, 
+                            "Registro Borrado con éxtio", 
+                            "Confirmación de acción", 
+                            JOptionPane.INFORMATION_MESSAGE);                    
+                    cargarRentas();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, 
+                            "Error al borrar", "Confirmación de acción", 
+                            JOptionPane.ERROR_MESSAGE);                    
+                }
+            }
+        }
+        
+    }                                        
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        if(jbModificar.getText().equalsIgnoreCase("Modificar")){
+            if(jTable1.getSelectedRow() == -1){
+               if(jTable1.getRowCount() == 0){
+                   JOptionPane.showMessageDialog(this,"No hay registros");
+               }else{
+                   JOptionPane.showMessageDialog(this,"Seleccione una fila");
+               }
+            }else{    
+                
+            jbNuevo.setEnabled(false);
+            jbModificar.setText("Actualizar");
+            jbBorrar.setEnabled(false);            
+            jbCancelar.setEnabled(true);
+           
+             }
+        }else {
+            
+            jbNuevo.setEnabled(true);
+            jbModificar.setText("Modificar");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);                                 
+            jbCancelar.setEnabled(false);
+            jTable1.setEnabled(true);
+             
+            //Se crea el objeto Renta
+             Renta renta = new Renta();             
+             //Se configura los datos en el objeto Renta de la clase
+             //Renta
+             
+             renta.setID(Integer.parseInt(txtID.getText()));
+             
+                         
+             
+                         
+             if(ControladorRenta.modificarRenta(renta) == 1){
+                 JOptionPane.showMessageDialog(this,"Actualización exitosa");
+                 this.cargarRentas();
+             } else {
+                 JOptionPane.showMessageDialog(this,"Actualización Fallida");
+             }
+             
+        }
+    }                                           
+
+    /*private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        txtID.setEnabled(false); 
+        jbBorrar.setEnabled(true);
+        jbNuevo.setEnabled(true);
+        jbRegistrar.setEnabled(false);
+        jbModificar.setText("Modificar");
+        jbCancelar.setEnabled(false);
+        jTable1.setEnabled(true);
+    } */                                         
+
+    private void cargarRentas(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable1.getModel();
+        ArrayList <Renta> listadoRenta =new ArrayList();
+        listadoRenta=ControladorRenta.listadoRentas("0");
+        for(int i= 0; i < listadoRenta.size(); i++){                       
+              modelo.addRow(new Object[]{
+              listadoRenta.get(i).getID(),
+              listadoRenta.get(i).getClienteID(),                         
+              listadoRenta.get(i).getInventarioID(),
+              listadoRenta.get(i).getPersonalID(),
+              listadoRenta.get(i).getFecha(),
+              listadoRenta.get(i).getFechaRetorno(),   
+              });
+        }    
+    }                                     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
