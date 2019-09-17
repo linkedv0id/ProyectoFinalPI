@@ -161,6 +161,11 @@ public class Inicio extends JFrame {
              menu4Item4RentaActionPerformed(evt);
             }
         });
+         menu4Item1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+             menu4Item1InventarioActionPerformed(evt);   
+            }
+        });
         
         
         
@@ -206,6 +211,9 @@ public class Inicio extends JFrame {
     public void menu4Item4RentaActionPerformed(ActionEvent evt){
         centrar(menu4Item4.getText());
     }
+    public void menu4Item1InventarioActionPerformed(ActionEvent evt){
+        centrar(menu4Item1.getText());
+    }
     
     
      public void centrar(String texto){
@@ -240,7 +248,9 @@ public class Inicio extends JFrame {
         if(texto.equalsIgnoreCase("Personal")){
             v=new VModificarPersonal();
         }
-        
+        if(texto.equalsIgnoreCase("Inventario")){
+            v=new VModificarInventario();
+        }        
         if(texto.equalsIgnoreCase("Renta")){
             v=new VModificarRenta();
         }

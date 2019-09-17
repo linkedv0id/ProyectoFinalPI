@@ -7,12 +7,15 @@ package modelo;
 
 /**
  *
+ /**
+ *
  * @author user
  */
 public class Inventario {
     private int id;
     private int peliculaID;
     private int tiendaID;
+    
     
     public Inventario(){}
     
@@ -23,7 +26,7 @@ public class Inventario {
     public void setPeliculaID(int peliculaID){this.peliculaID=peliculaID;}
     
     public int getTiendaID(){return tiendaID;}
-    public void setTIendaID(int tiendaID){this.tiendaID=tiendaID;}
+    public void setTiendaID(int tiendaID){this.tiendaID=tiendaID;}
     
     
 }
