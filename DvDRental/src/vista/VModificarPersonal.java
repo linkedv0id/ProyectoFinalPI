@@ -402,7 +402,10 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
-        txtID.setText("");            
+        ArrayList<Personal> listadoPersonal = new ArrayList();
+        listadoPersonal = ControladorPersonal.listadoPersonal("0"); 
+        
+        txtID.setText(listadoPersonal.size()+1+"");            
         txtNombre.setText("");
         txtApellido.setText("");  
         txtEmail.setText("");
@@ -467,7 +470,7 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             personal.setID(Integer.parseInt(txtID.getText()));
             personal.setNombre(txtNombre.getText());
             personal.setApellido(txtApellido.getText());
-            personal.setDireccionID(Integer.parseInt(txtDireccionID.getText()));
+            personal.setDireccionID(1);
             personal.setEmail(txtEmail.getText());
             personal.setTiendaID(jcTienda.getSelectedIndex());
             personal.setActivado(Boolean.parseBoolean(jcActivado.getSelectedItem().toString()));
@@ -590,6 +593,7 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
              personal.setActivado(Boolean.parseBoolean(jcActivado.getSelectedItem().toString()));
              personal.setNombreUsuario(txtNombreUsuario.getText());
              personal.setContraseña(txtContraseña.getText());
+             
              
              
                          

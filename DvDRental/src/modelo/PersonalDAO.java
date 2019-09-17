@@ -83,7 +83,7 @@ public class PersonalDAO {
             pstm.setBoolean(7,p.getActivado());
             pstm.setString(8,p.getNombreUsuario());
             pstm.setString(9,p.getContraseña());
-            pstm.setTimestamp(10, null);
+            pstm.setTimestamp(10, new Timestamp(1,1,1,1,1,1,1));
             pstm.setBinaryStream(11, fis, (int)file.length());
                        
             
