@@ -9,20 +9,48 @@ import java.util.ArrayList;
 import modelo.Inventario;
 import modelo.InventarioDAO;
 
-
 /**
  *
- * @author invitado
+ * @author user
  */
 public class ControladorInventario {
     
-      public static ArrayList<Inventario> listadoInventario(String codigo)
+     public static ArrayList<Inventario> listadoInventarios(String codigo)
     {
         ArrayList<Inventario> listado;
         listado = new ArrayList();
-        InventarioDAO inventario = new InventarioDAO();
-        listado = inventario.listadoInventario(codigo);
+        InventarioDAO inventarios = new InventarioDAO();
+        listado = inventarios.listadoInventarios(codigo);
         return listado; 
+    }
+      public static ArrayList<Inventario> listadoInventariosTienda(String codigo)
+    {
+        ArrayList<Inventario> listado;
+        listado = new ArrayList();
+        InventarioDAO inventarios = new InventarioDAO();
+        listado = inventarios.listadoInventariosTiendas(codigo);
+        return listado; 
+    }
+    
+      public static int grabarInventario(Inventario i)
+    {
+        InventarioDAO inventarioDAO = new InventarioDAO();
+        int resultado = inventarioDAO.grabarInventario(i);
+        return resultado; 
+    }
+      public static int borrarInventario(String codigo)
+    {
+        InventarioDAO inventarioDAO = new InventarioDAO();
+        int resultado = inventarioDAO.borrarInventario(codigo);
+        return resultado; 
+    }
+    
+    
+     public static int modificarInventario(Inventario i)
+    {
+        InventarioDAO inventarioDAO = new InventarioDAO();
+        int resultado = inventarioDAO.modificarInventario(i);
+        return resultado; 
     }
     
 }

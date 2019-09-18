@@ -41,7 +41,7 @@ public class Personal {
     public String getEmail(){return email;}
     public void setEmail(String email){this.email=email;}
     
-    public int getTiendaID(){return id;}
+    public int getTiendaID(){return tiendaID;}
     public void setTiendaID(int tiendaID){this.tiendaID=tiendaID;}
     
     public boolean getActivado(){return activado;}

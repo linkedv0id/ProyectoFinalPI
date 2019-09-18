@@ -5,6 +5,7 @@
  */
 package vista;
 
+import control.ControladorDireccion;
 import control.ControladorPersonal;
 import control.ControladorTienda;
 import java.awt.Image;
@@ -15,6 +16,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import modelo.Direccion;
 import modelo.Personal;
 import modelo.Tienda;
 
@@ -54,8 +56,6 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
         txtID = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        txtDireccionID = new javax.swing.JTextField();
-        jbDireccion = new javax.swing.JButton();
         jlEmail = new javax.swing.JLabel();
         jlDireccion = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
@@ -67,6 +67,7 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
         jcTienda = new javax.swing.JComboBox();
         jcActivado = new javax.swing.JComboBox();
         jlActivado = new javax.swing.JLabel();
+        jcDireccion = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jbFoto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -75,6 +76,7 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
         jbRegistrar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
+        jbBorrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -100,11 +102,6 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                 txtApellidoActionPerformed(evt);
             }
         });
-
-        txtDireccionID.setEnabled(false);
-
-        jbDireccion.setText("Seleccionar");
-        jbDireccion.setEnabled(false);
 
         jlEmail.setText("Email:");
 
@@ -136,6 +133,10 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
 
         jlActivado.setText("Activado:");
 
+        jcDireccion.setEnabled(false);
+        jcDireccion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        cargarDireccionesCombo();
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -155,17 +156,14 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                 .addGap(76, 76, 76)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jcActivado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtDireccionID, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbDireccion))
                     .addComponent(txtID)
                     .addComponent(txtNombre)
                     .addComponent(txtApellido)
                     .addComponent(txtEmail)
                     .addComponent(txtNombreUsuario)
                     .addComponent(jcTienda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                    .addComponent(jcDireccion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -185,9 +183,8 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDireccionID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbDireccion)
-                    .addComponent(jlDireccion))
+                    .addComponent(jlDireccion)
+                    .addComponent(jcDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlEmail)
@@ -247,8 +244,6 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.getAccessibleContext().setAccessibleName("");
-
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Controles"));
 
         jbNuevo.setText("Nuevo");
@@ -281,6 +276,13 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             }
         });
 
+        jbBorrar.setText("Borrar");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -288,13 +290,15 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jbNuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(jbRegistrar)
-                .addGap(85, 85, 85)
+                .addGap(68, 68, 68)
                 .addComponent(jbModificar)
-                .addGap(98, 98, 98)
+                .addGap(64, 64, 64)
                 .addComponent(jbCancelar)
-                .addGap(136, 136, 136))
+                .addGap(46, 46, 46)
+                .addComponent(jbBorrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +308,8 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                     .addComponent(jbNuevo)
                     .addComponent(jbRegistrar)
                     .addComponent(jbModificar)
-                    .addComponent(jbCancelar))
+                    .addComponent(jbCancelar)
+                    .addComponent(jbBorrar))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -351,7 +356,7 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -409,12 +414,12 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
         txtNombre.setText("");
         txtApellido.setText("");  
         txtEmail.setText("");
-        txtDireccionID.setText("");
+        jcDireccion.setSelectedIndex(0);
         jcTienda.setSelectedIndex(0);
         jcActivado.setSelectedIndex(0);
         txtNombreUsuario.setText("");
         txtContraseña.setText("");
-        jbDireccion.setEnabled(true);
+        
         
         if(jbNuevo.getText().equals("Nuevo")){
             jbRegistrar.setEnabled(true);
@@ -424,13 +429,12 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             txtEmail.setEnabled(true);
             jcTienda.setEnabled(true);
             jcActivado.setEnabled(true);
+            jcDireccion.setEnabled(true);
             txtNombreUsuario.setEnabled(true);
             txtContraseña.setEnabled(true);
             
-            //txtClasificacion.setEnabled(true);
-            //txtEspecial.setEnabled(true);
-            //txtFull.setEnabled(true);
             jbModificar.setEnabled(false);
+            jbBorrar.setEnabled(false);
             jbNuevo.setText("Cancelar");            
             jTable1.setEnabled(false);
             jTable1.setVisible(false);
@@ -439,10 +443,11 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
         }
         else{
             jbRegistrar.setEnabled(false);
-            
+            jbBorrar.setEnabled(true);
             txtNombre.setEnabled(false);
             txtApellido.setEnabled(false);
-            jbDireccion.setEnabled(false);           
+            jcDireccion.setEnabled(false);
+                       
             jcTienda.setEnabled(false); 
             jcActivado.setEnabled(false);
             txtEmail.setEnabled(false);
@@ -470,9 +475,9 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             personal.setID(Integer.parseInt(txtID.getText()));
             personal.setNombre(txtNombre.getText());
             personal.setApellido(txtApellido.getText());
-            personal.setDireccionID(1);
+            personal.setDireccionID(Integer.parseInt(jcDireccion.getSelectedItem().toString()));
             personal.setEmail(txtEmail.getText());
-            personal.setTiendaID(jcTienda.getSelectedIndex());
+            personal.setTiendaID(Integer.parseInt(jcTienda.getSelectedItem().toString()));
             personal.setActivado(Boolean.parseBoolean(jcActivado.getSelectedItem().toString()));
             personal.setNombreUsuario(txtNombreUsuario.getText());
             personal.setContraseña(txtContraseña.getText());
@@ -503,9 +508,10 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             txtEmail.setEnabled(false);           
             jcTienda.setEnabled(false); 
             jcActivado.setEnabled(false);
+            jcDireccion.setEnabled(false);
             txtNombreUsuario.setEnabled(false);
             txtContraseña.setEnabled(false);
-            jbDireccion.setEnabled(false);
+            jbBorrar.setEnabled(true);
             jbFoto.setEnabled(false);
             
             jbNuevo.setText("Nuevo");
@@ -548,11 +554,13 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                 
                 
             jbNuevo.setEnabled(false);
+            jbBorrar.setEnabled(false);
             txtNombre.setEnabled(true);
             txtApellido.setEnabled(true);
             txtEmail.setEnabled(true);
             jcTienda.setEnabled(true);
             jcActivado.setEnabled(true);
+            jcDireccion.setEnabled(true);
             txtNombreUsuario.setEnabled(true);
             txtContraseña.setEnabled(true);
             
@@ -564,7 +572,7 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
              }
         }else {
             
-            
+            jbBorrar.setEnabled(true);
             jbNuevo.setEnabled(true);
             txtNombre.setEnabled(false);
             txtApellido.setEnabled(false);
@@ -573,6 +581,7 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             jcActivado.setEnabled(false);
             txtNombreUsuario.setEnabled(false);
             txtContraseña.setEnabled(false);
+            jcDireccion.setEnabled(false);
             
             jbModificar.setText("Modificar");
             jbModificar.setEnabled(true);
@@ -580,15 +589,15 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             jbCancelar.setEnabled(false);
             jTable1.setEnabled(true);
              
-            //Se crea el objeto Programa 
+            
              Personal personal = new Personal();
              
-             //Se configura los datos en el objeto programa de la clase
-             //Programa
+            
              personal.setID(Integer.parseInt(txtID.getText()));
              personal.setNombre(txtNombre.getText());                                          
              personal.setApellido(txtApellido.getText());                                          
              personal.setEmail(txtEmail.getText()); 
+             personal.setDireccionID(Integer.parseInt(jcDireccion.getSelectedItem().toString()));
              personal.setTiendaID(jcTienda.getSelectedIndex());
              personal.setActivado(Boolean.parseBoolean(jcActivado.getSelectedItem().toString()));
              personal.setNombreUsuario(txtNombreUsuario.getText());
@@ -615,9 +624,11 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
         txtEmail.setEnabled(false);           
         jcTienda.setEnabled(false); 
         jcActivado.setEnabled(false);
+        jcDireccion.setEnabled(false);
         txtNombreUsuario.setEnabled(false);
         txtContraseña.setEnabled(false);
         
+        jbBorrar.setEnabled(true);
         jbNuevo.setEnabled(true);
         jbRegistrar.setEnabled(false);
         jbModificar.setText("Modificar");
@@ -644,10 +655,10 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
                     jTable1.getSelectedRow(), 1).toString());
             txtApellido.setText(modelo.getValueAt(
                     jTable1.getSelectedRow(), 2).toString());   
-            txtDireccionID.setText(modelo.getValueAt(jTable1.getSelectedRow(),3).toString());
+            jcDireccion.setSelectedItem(Integer.parseInt(modelo.getValueAt(jTable1.getSelectedRow(),3).toString()));
             txtEmail.setText(modelo.getValueAt(jTable1.getSelectedRow(),4).toString());
             
-            jcTienda.setSelectedIndex(Integer.parseInt(modelo.getValueAt(jTable1.getSelectedRow(),5).toString()));
+            jcTienda.setSelectedItem(Integer.parseInt(modelo.getValueAt(jTable1.getSelectedRow(),5).toString()));
             jcActivado.setSelectedItem(modelo.getValueAt(jTable1.getSelectedRow(),6).toString());
             
             txtNombreUsuario.setText(modelo.getValueAt(jTable1.getSelectedRow(),7).toString());
@@ -656,6 +667,37 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor seleccione un Empleado","Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            int respuesta = JOptionPane.showConfirmDialog(this,
+                    "¿Desea Eliminar el Empleado con el codigo : " +
+                            txtID.getText().trim()+
+                    " ?", "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                String codigo = "";
+                codigo  = txtID.getText().trim();
+                
+                if(ControladorPersonal.borrarPersonal(codigo) == 1){
+                    JOptionPane.showMessageDialog(this, 
+                            "Registro Borrado con éxtio", 
+                            "Confirmación de acción", 
+                            JOptionPane.INFORMATION_MESSAGE);                    
+                    cargarEmpleadosTabla();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, 
+                            "Error al borrar", "Confirmación de acción", 
+                            JOptionPane.ERROR_MESSAGE);                    
+                }
+            }
+        }
+    }//GEN-LAST:event_jbBorrarActionPerformed
 
     
 
@@ -691,6 +733,16 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+     
+     private void cargarDireccionesCombo(){
+          ArrayList<Direccion> listaDirecciones = new ArrayList();
+          listaDirecciones=ControladorDireccion.listadoDirecciones("0");
+                    
+          for(int i=0;i<listaDirecciones.size();i++){
+              jcDireccion.addItem(listaDirecciones.get(i).getID());
+               
+          }
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -700,13 +752,14 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbBorrar;
     private javax.swing.JButton jbCancelar;
-    private javax.swing.JButton jbDireccion;
     private javax.swing.JButton jbFoto;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbRegistrar;
     private javax.swing.JComboBox jcActivado;
+    private javax.swing.JComboBox jcDireccion;
     private javax.swing.JComboBox jcTienda;
     private javax.swing.JLabel jlActivado;
     private javax.swing.JLabel jlApellido;
@@ -719,7 +772,6 @@ public class VModificarPersonal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlTienda;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtContraseña;
-    private javax.swing.JTextField txtDireccionID;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;

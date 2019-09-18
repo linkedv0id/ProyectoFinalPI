@@ -18,7 +18,8 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Inicio i =new Inicio();
+        Login i =new Login();
+        i.setVisible(true);
     }
     
 }

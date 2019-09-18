@@ -6,10 +6,14 @@
 package vista;
 
 import control.ControladorCliente;
+import control.ControladorDireccion;
+import control.ControladorTienda;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
+import modelo.Direccion;
+import modelo.Tienda;
 
 /**
  *
@@ -38,24 +42,16 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
         jlTienda = new javax.swing.JLabel();
         jlNombre = new javax.swing.JLabel();
         jlApellido = new javax.swing.JLabel();
-        jlDIreccion = new javax.swing.JLabel();
-        jlDIreccion2 = new javax.swing.JLabel();
-        jlDistrito = new javax.swing.JLabel();
-        jlCiudad = new javax.swing.JLabel();
-        jlCodigoP = new javax.swing.JLabel();
-        jlTelefono = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jcTienda = new javax.swing.JComboBox();
         txtNombre = new javax.swing.JTextField();
-        txtCodigoP = new javax.swing.JTextField();
-        txtDistrito = new javax.swing.JTextField();
-        jcCiudad = new javax.swing.JComboBox();
-        txtDireccion2 = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
         jlEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        jlDireccion = new javax.swing.JLabel();
+        jcDireccion = new javax.swing.JComboBox();
+        jlActivado = new javax.swing.JLabel();
+        jcActivado = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -79,43 +75,30 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
 
         jlApellido.setText("Apellido:");
 
-        jlDIreccion.setText("Direccion:");
-
-        jlDIreccion2.setText("Direccion2:");
-
-        jlDistrito.setText("Distrito:");
-
-        jlCiudad.setText("Ciudad:");
-
-        jlCodigoP.setText("Codigo Postal:");
-
-        jlTelefono.setText("Telefono:");
-
         txtID.setEnabled(false);
 
         jcTienda.setEnabled(false);
-        jcTienda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcTienda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        cargarTiendasCombo();
 
         txtNombre.setEnabled(false);
 
-        txtCodigoP.setEnabled(false);
-
-        txtDistrito.setEnabled(false);
-
-        jcCiudad.setEnabled(false);
-        jcCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txtDireccion2.setEnabled(false);
-
-        txtDireccion.setEnabled(false);
-
         txtApellido.setEnabled(false);
-
-        txtTelefono.setEnabled(false);
 
         jlEmail.setText("Email:");
 
         txtEmail.setEnabled(false);
+
+        jlDireccion.setText("Direccion ID:");
+
+        jcDireccion.setEnabled(false);
+        jcDireccion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar" }));
+        cargarDireccionesCombo();
+
+        jlActivado.setText("Activado:");
+
+        jcActivado.setEnabled(false);
+        jcActivado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "true", "false" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,34 +107,22 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlDIreccion2)
-                    .addComponent(jlDIreccion)
                     .addComponent(jlApellido)
                     .addComponent(jlNombre)
                     .addComponent(jlTienda)
                     .addComponent(jlID)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jlCiudad)
-                        .addComponent(jlDistrito))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlTelefono)
-                            .addComponent(jlCodigoP)
-                            .addComponent(jlEmail))))
-                .addGap(32, 32, 32)
+                    .addComponent(jlEmail)
+                    .addComponent(jlDireccion)
+                    .addComponent(jlActivado))
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCodigoP)
                     .addComponent(txtID, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jcCiudad, javax.swing.GroupLayout.Alignment.TRAILING, 0, 80, Short.MAX_VALUE)
-                    .addComponent(txtDireccion2)
-                    .addComponent(txtDireccion)
                     .addComponent(txtApellido)
                     .addComponent(txtNombre)
                     .addComponent(jcTienda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTelefono)
-                    .addComponent(txtDistrito)
-                    .addComponent(txtEmail))
+                    .addComponent(jcDireccion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jcActivado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -173,41 +144,19 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlApellido)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlDIreccion)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlDIreccion2)
-                    .addComponent(txtDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlEmail)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlDistrito)
-                    .addComponent(txtDistrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlDireccion)
+                    .addComponent(jcDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlCiudad)
-                    .addComponent(jcCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlCodigoP)
-                    .addComponent(txtCodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jlTelefono))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jlEmail))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlActivado)
+                    .addComponent(jcActivado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -215,7 +164,7 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Apellido", "Email"
+                "ID", "TiendaID","Nombre", "Apellido", "Email","DireccionID","Activado"
             }
         ));
         cargarClientes();
@@ -238,10 +187,25 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
 
         jbRegistrar.setEnabled(false);
         jbRegistrar.setText("Registar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         jbBorrar.setText("Borrar");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jbCancelar.setEnabled(false);
         jbCancelar.setText("Cancelar");
@@ -287,24 +251,24 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -312,6 +276,19 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         // TODO add your handling code here:
+        txtNombre.setEnabled(false);
+        txtApellido.setEnabled(false);
+        txtEmail.setEnabled(false);
+        jcDireccion.setEnabled(false);  
+        jcTienda.setEnabled(false);
+        jcActivado.setEnabled(false);
+        
+        jbBorrar.setEnabled(true);
+        jbNuevo.setEnabled(true);
+        jbRegistrar.setEnabled(false);
+        jbModificar.setText("Modificar");
+        jbCancelar.setEnabled(false);
+        jTable1.setEnabled(true);
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -327,44 +304,44 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
             }}else {
                                   
             txtID.setText(modelo.getValueAt(
-                    jTable1.getSelectedRow(), 0).toString());            
+                    jTable1.getSelectedRow(), 0).toString()); 
+            jcTienda.setSelectedItem(modelo.getValueAt(jTable1.getSelectedRow(),1).toString());
             txtNombre.setText(modelo.getValueAt(
-                    jTable1.getSelectedRow(), 1).toString());
+                    jTable1.getSelectedRow(), 2).toString());
             txtApellido.setText(modelo.getValueAt(
-                    jTable1.getSelectedRow(), 2).toString());  
+                    jTable1.getSelectedRow(), 3).toString());  
             txtEmail.setText(modelo.getValueAt(
-                    jTable1.getSelectedRow(), 3).toString());            
+                    jTable1.getSelectedRow(), 4).toString());      
+            jcDireccion.setSelectedItem(Integer.parseInt(modelo.getValueAt(jTable1.getSelectedRow(),5).toString()));
+            jcActivado.setSelectedItem(modelo.getValueAt(jTable1.getSelectedRow(),6).toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // TODO add your handling code here:
-        txtID.setText("");            
+        ArrayList <Cliente> listadoClientes =new ArrayList();
+        listadoClientes=ControladorCliente.listadoClientes("0");
+        txtID.setText(listadoClientes.size()+1+"");            
         txtNombre.setText("");
         txtApellido.setText("");  
-        txtDireccion.setText("");
+        jcDireccion.setSelectedIndex(0);
         jcTienda.setSelectedIndex(0);
-        jcCiudad.setSelectedIndex(0);
-        txtDireccion2.setText("");
-        txtDistrito.setText("");
-        txtCodigoP.setText("");
-        txtTelefono.setText("");
+        
+       
         txtEmail.setText("");
         
         
         if(jbNuevo.getText().equals("Nuevo")){
             jbRegistrar.setEnabled(true);
-            txtID.setEnabled(true);
+            
             txtNombre.setEnabled(true);
             txtApellido.setEnabled(true);
-            txtDireccion.setEnabled(true);
+            jcDireccion.setEnabled(true);
+            jcActivado.setEnabled(true);
             jcTienda.setEnabled(true);
-            jcCiudad.setEnabled(true);
-            txtDireccion2.setEnabled(true);
-            txtDistrito.setEnabled(true);
-            txtCodigoP.setEnabled(true);
+            
             txtEmail.setEnabled(true);
-            txtTelefono.setEnabled(true);            
+                        
             jbModificar.setEnabled(false);
             jbNuevo.setText("Cancelar");
             jbBorrar.setEnabled(false);
@@ -374,17 +351,14 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
         }
         else{
             jbRegistrar.setEnabled(false);
-            txtID.setEnabled(false);
+           
             txtNombre.setEnabled(false);
             txtApellido.setEnabled(false);
-            txtDireccion.setEnabled(false);           
-            jcTienda.setEnabled(false); 
-            jcCiudad.setEnabled(false);
-            txtDireccion2.setEnabled(false);
-            txtDistrito.setEnabled(false);
-            txtCodigoP.setEnabled(false);
-            txtTelefono.setEnabled(false);
-            txtEmail.setEnabled(false);            
+            jcDireccion.setEnabled(false);           
+            jcActivado.setEnabled(false);
+            jcTienda.setEnabled(false);             
+            txtEmail.setEnabled(false);  
+            
             jbNuevo.setText("Nuevo");
             jbModificar.setEnabled(true);
             jbBorrar.setEnabled(true);
@@ -395,20 +369,205 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jbNuevoActionPerformed
 
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        // TODO add your handling code here:
+                Cliente cliente= new Cliente();
+                cliente.setID(Integer.parseInt(txtID.getText()));
+                cliente.setTiendaID(jcTienda.getSelectedIndex());
+                cliente.setNombre(txtNombre.getText());
+                cliente.setApellido(txtApellido.getText());
+                cliente.setEmail(txtEmail.getText());
+                cliente.setDireccionID(Integer.parseInt(jcDireccion.getSelectedItem().toString()));
+                cliente.setActivado(Boolean.parseBoolean(jcActivado.getSelectedItem().toString()));
+                  
+                
+                int tamaño;
+                tamaño=ControladorCliente.listadoClientes(cliente.getID()+"").size();
+                
+                if(tamaño==0){
+                int resultado = 0;
+                    resultado = ControladorCliente.grabarCliente(cliente);
+                    if(resultado == 1){
+                        JOptionPane.showMessageDialog(this,
+                                "Registro Grabado con éxito",
+                                "Confirmación",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Error al grabar",
+                                "Confirmación",JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    cargarClientes();
+
+            jbRegistrar.setEnabled(false);
+            jcTienda.setEnabled(false);
+            txtNombre.setEnabled(false);
+            txtApellido.setEnabled(false);
+            txtEmail.setEnabled(false);
+            jcDireccion.setEnabled(false);  
+            jcActivado.setEnabled(false);
+            
+            jbNuevo.setText("Nuevo");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            jTable1.setEnabled(true);
+            jTable1.setVisible(true);
+            jbNuevo.requestFocusInWindow();
+                                       
+            }else{
+                   JOptionPane.showMessageDialog(this,
+                           "IDya registrado","Confirmación",
+                           JOptionPane.ERROR_MESSAGE); 
+                   txtID.requestFocusInWindow();
+                }
+        
+        
+        
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor seleccione un cliente","Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            int respuesta = JOptionPane.showConfirmDialog(this,
+                    "¿Desea Eliminar el cliente con el codigo : " +
+                            txtID.getText().trim()+
+                    " ?", "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                String codigo = "";
+                codigo  = txtID.getText().trim();
+                
+                if(ControladorCliente.borrarCliente(codigo) == 1){
+                    JOptionPane.showMessageDialog(this, 
+                            "Registro Borrado con éxtio", 
+                            "Confirmación de acción", 
+                            JOptionPane.INFORMATION_MESSAGE);                    
+                    cargarClientes();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, 
+                            "Error al borrar", "Confirmación de acción", 
+                            JOptionPane.ERROR_MESSAGE);                    
+                }
+            }
+        }
+    }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // TODO add your handling code here:
+        if(jbModificar.getText().equalsIgnoreCase("Modificar")){
+            if(jTable1.getSelectedRow() == -1){
+               if(jTable1.getRowCount() == 0){
+                   JOptionPane.showMessageDialog(this,"No hay registros");
+               }else{
+                   JOptionPane.showMessageDialog(this,"Seleccione una fila");
+               }
+            }else{    
+                
+            jbNuevo.setEnabled(false);
+            jcTienda.setEnabled(true);
+            txtNombre.setEnabled(true);
+            txtApellido.setEnabled(true);
+            txtEmail.setEnabled(true);
+            jcDireccion.setEnabled(true);   
+            jcActivado.setEnabled(true);
+            jbModificar.setText("Actualizar");
+            jbBorrar.setEnabled(false);            
+            jbCancelar.setEnabled(true);
+           
+             }
+        }else {
+            
+            jbNuevo.setEnabled(true);
+            jcTienda.setEnabled(false);
+            txtNombre.setEnabled(false);
+            txtApellido.setEnabled(false);
+            txtEmail.setEnabled(false);
+            jcDireccion.setEnabled(false);     
+            jcActivado.setEnabled(false);
+            
+            jbModificar.setText("Modificar");
+            jbModificar.setEnabled(true);
+            jbBorrar.setEnabled(true);                                 
+            jbCancelar.setEnabled(false);
+            jTable1.setEnabled(true);
+             
+            //Se crea el objeto Pais
+             Cliente cliente = new Cliente();             
+             //Se configura los datos en el objeto pais de la clase
+             //Pais
+             
+             cliente.setID(Integer.parseInt(txtID.getText()));
+             cliente.setTiendaID(Integer.parseInt(jcTienda.getSelectedItem().toString()));
+             cliente.setNombre(txtNombre.getText());
+             cliente.setApellido(txtApellido.getText());
+             cliente.setEmail(txtEmail.getText());
+             cliente.setDireccionID(Integer.parseInt(jcDireccion.getSelectedItem().toString()));
+             cliente.setActivado(Boolean.parseBoolean(jcActivado.getSelectedItem().toString()));
+                         
+             
+                         
+             if(ControladorCliente.modificarCliente(cliente) == 1){
+                 JOptionPane.showMessageDialog(this,"Actualización exitosa");
+                 this.cargarClientes();
+             } else {
+                 JOptionPane.showMessageDialog(this,"Actualización Fallida");
+             }
+             
+        }
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    
+    
+    
     private void cargarClientes(){
+        
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTable1.getModel();
+        limpiarTabla();
         ArrayList <Cliente> listadoClientes =new ArrayList();
         listadoClientes=ControladorCliente.listadoClientes("0");
         for(int i= 0; i < listadoClientes.size(); i++){                       
               modelo.addRow(new Object[]{
               listadoClientes.get(i).getID(),
+              listadoClientes.get(i).getTiendaID(),
               listadoClientes.get(i).getNombre(),
               listadoClientes.get(i).getApellido(),
-              listadoClientes.get(i).getEmail()
+              listadoClientes.get(i).getEmail(),
+              listadoClientes.get(i).getDireccionID(),
+              listadoClientes.get(i).getActivado()
                  
               });
         }    
+    }
+    private void cargarTiendasCombo(){
+         ArrayList<Tienda> listaTiendas = new ArrayList();
+          listaTiendas=ControladorTienda.listadoTiendas("0");
+                    
+          for(int i=0;i<listaTiendas.size();i++){
+              jcTienda.addItem(listaTiendas.get(i).getID());
+                            
+          }
+    }
+    private void cargarDireccionesCombo(){
+        ArrayList<Direccion> listaDirecciones = new ArrayList();
+          listaDirecciones=ControladorDireccion.listadoDirecciones("0");
+                    
+          for(int i=0;i<listaDirecciones.size();i++){
+              jcDireccion.addItem(listaDirecciones.get(i).getID());
+               
+          }
+    }
+    
+      private void limpiarTabla(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable1.getModel();
+        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+            modelo.removeRow(i);
+        }
     }
     
     
@@ -423,27 +582,19 @@ public class VModificarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbRegistrar;
-    private javax.swing.JComboBox jcCiudad;
+    private javax.swing.JComboBox jcActivado;
+    private javax.swing.JComboBox jcDireccion;
     private javax.swing.JComboBox jcTienda;
+    private javax.swing.JLabel jlActivado;
     private javax.swing.JLabel jlApellido;
-    private javax.swing.JLabel jlCiudad;
-    private javax.swing.JLabel jlCodigoP;
-    private javax.swing.JLabel jlDIreccion;
-    private javax.swing.JLabel jlDIreccion2;
-    private javax.swing.JLabel jlDistrito;
+    private javax.swing.JLabel jlDireccion;
     private javax.swing.JLabel jlEmail;
     private javax.swing.JLabel jlID;
     private javax.swing.JLabel jlNombre;
-    private javax.swing.JLabel jlTelefono;
     private javax.swing.JLabel jlTienda;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCodigoP;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtDireccion2;
-    private javax.swing.JTextField txtDistrito;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

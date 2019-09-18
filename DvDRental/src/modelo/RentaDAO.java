@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import servicios.Fachada;
@@ -48,6 +49,17 @@ public class RentaDAO {
     }
     
     public int grabarRenta(Renta p){
+        
+        String [] fecha =p.getFecha().split("/");
+        int año=Integer.parseInt(fecha[0])-1900;
+        int mes=Integer.parseInt(fecha[1])-1;        
+        int dia=Integer.parseInt(fecha[2]);
+        
+        String [] fechaRetorno =p.getFechaRetorno().split("/");
+        int año2=Integer.parseInt(fechaRetorno[0])-1900;
+        int mes2=Integer.parseInt(fechaRetorno[1])-1;        
+        int dia2=Integer.parseInt(fechaRetorno[2]);
+        
         Connection con = null;
         PreparedStatement pstm;
         pstm = null;
@@ -60,11 +72,13 @@ public class RentaDAO {
             pstm = con.prepareStatement(sql);
             
             pstm.setInt(1, p.getID());
-            pstm.setInt(2, p.getClienteID());
+            pstm.setTimestamp(2, new Timestamp(año,mes,dia,1,1,1,1));
             pstm.setInt(3, p.getInventarioID());
-            pstm.setInt(4, p.getPersonalID());
-            pstm.setString(5, p.getFecha());
-            pstm.setString(6, p.getFechaRetorno());
+            pstm.setInt(4, p.getClienteID());
+            pstm.setTimestamp(5, new Timestamp(año2,mes2,dia2,1,1,1,1));
+            pstm.setInt(6, p.getPersonalID());
+            
+            
             
             
             
@@ -96,9 +110,9 @@ public class RentaDAO {
             con = Fachada.getConnection();
             String sql="";
             if(codigo.equalsIgnoreCase("0")){
-                sql = "SELECT * FROM rental  ORDER BY renta_id";            
+                sql = "SELECT * FROM rental  ORDER BY rental_id";            
             }else{
-                sql = "SELECT * FROM rental  WHERE renta_id="+codigo;     
+                sql = "SELECT * FROM rental  WHERE rental_id="+codigo;     
             }                        
             pstm = con.prepareStatement(sql);
             
@@ -110,12 +124,14 @@ public class RentaDAO {
                         
             while(rs.next()){
                 Renta renta=new Renta();
-                renta.setID(rs.getInt("id"));
-                renta.setInventarioID(rs.getInt("inventarioID"));
-                renta.setClienteID(rs.getInt("clienteID"));
-                renta.setPersonalID(rs.getInt("personalID"));
-                renta.setFecha(rs.getString("fecha"));
-                renta.setFechaRetorno(rs.getString("fechaRetorno"));
+                renta.setID(rs.getInt("rental_id"));
+                renta.setFecha(rs.getString("rental_date"));
+                renta.setInventarioID(rs.getInt("inventory_id"));
+                renta.setClienteID(rs.getInt("customer_id"));
+                renta.setFechaRetorno(rs.getString("return_date"));
+                renta.setPersonalID(rs.getInt("staff_id"));
+                
+                
                 
                 listado.add(renta);
                 
@@ -154,11 +170,12 @@ public class RentaDAO {
             //pstm.setString(1, p.getRenta()); //Modify later
 
             pstm.setInt(1, p.getID());
-            pstm.setInt(2, p.getInventarioID());
-            pstm.setInt(3, p.getClienteID());
-            pstm.setInt(4, p.getPersonalID());
-            pstm.setString(5, p.getFecha());
-            pstm.setString(6, p.getFechaRetorno());
+            pstm.setString(2, p.getFecha());
+            pstm.setInt(3, p.getInventarioID());
+            pstm.setInt(4, p.getClienteID());
+            pstm.setString(5, p.getFechaRetorno());
+            pstm.setInt(6, p.getPersonalID());            
+            
             pstm.setInt(7,p.getID());
             
             rtdo = pstm.executeUpdate();  

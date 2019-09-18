@@ -203,6 +203,66 @@ public class PeliculaDAO {
         return rtdo;
     }
     
+    public ArrayList<Pelicula> listadoPeliculas(String codigo){      
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        ArrayList<Pelicula> listado = new ArrayList<>();
+        try{
+            con = Fachada.getConnection();
+            String sql="";
+            if(codigo.equalsIgnoreCase("0")){
+                sql = "SELECT * FROM film  ORDER BY film_id";            
+            }else{
+                sql = "SELECT * FROM film  WHERE film_id="+codigo;     
+            }                        
+            pstm = con.prepareStatement(sql);
+            
+            /*if(codigo != "0"){
+                pstm.setString(1, codigo);
+            }*/
+            
+            rs = pstm.executeQuery();
+                        
+            while(rs.next()){
+                Pelicula pelicula = new Pelicula();
+                pelicula.setID(rs.getInt("film_id"));
+                pelicula.setTitulo(rs.getString("title"));               
+                pelicula.setDescripcion(rs.getString("description"));
+                pelicula.setAño(rs.getInt("release_year"));
+                pelicula.setLenguaje(rs.getInt("language_id"));
+                pelicula.setDuracionRenta(rs.getInt("rental_duration"));
+                pelicula.setTasa(rs.getDouble("rental_rate"));
+                pelicula.setTamaño(rs.getInt(("length")));
+                pelicula.setCosto(rs.getDouble("replacement_cost"));
+                pelicula.setRating(rs.getString("rating"));
+                pelicula.setEspecial(rs.getString("special_features"));
+                pelicula.setFulltex(rs.getString("fulltext"));
+                //
+                //
+                //
+                               
+                listado.add(pelicula);
+                
+            }
+            System.out.println(listado.size());
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return listado;
+    }
     
     
 }

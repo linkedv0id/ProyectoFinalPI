@@ -41,7 +41,15 @@ public class ControladorPelicula {
         int resultado = peliculaDAO.grabarPelicula(p);
         return resultado; 
     }
-     
+     public static ArrayList<Pelicula> listadoPeliculas(String codigo)
+    {
+        ArrayList<Pelicula> listado;
+        listado = new ArrayList();
+        PeliculaDAO categoriasP = new PeliculaDAO();
+        listado = categoriasP.listadoPeliculas(codigo);
+        return listado; 
+       
+    }
      
     
 }

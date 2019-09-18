@@ -23,4 +23,22 @@ public class ControladorCliente {
         return listado; 
        
     }
+     public static int modificarCliente(Cliente c )
+    {
+        ClienteDAO clienteDAO = new ClienteDAO();
+        int resultado = clienteDAO.modificarCliente(c);
+        return resultado; 
+    }
+     public static int borrarCliente(String codigo)
+    {
+        ClienteDAO clienteDAO = new ClienteDAO();
+        int resultado = clienteDAO.borrarCliente(codigo);
+        return resultado; 
+    }
+    public static int grabarCliente(Cliente c)
+    {
+        ClienteDAO clienteDAO = new ClienteDAO();
+        int resultado = clienteDAO.grabarCliente(c);
+        return resultado; 
+    }
 }

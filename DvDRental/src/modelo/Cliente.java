@@ -30,7 +30,7 @@ public class Cliente {
     public int getID(){return id;}
     public void setID(int id){this.id=id;}
     
-    public int getTiendaID(){return id;}
+    public int getTiendaID(){return tiendaID;}
     public void setTiendaID(int tiendaID){this.tiendaID=tiendaID;}
     
     public String getNombre(){return nombre;}

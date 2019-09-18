@@ -172,7 +172,7 @@ public class ClienteDAO {
             pstm.setInt(5,c.getDireccionID());
             pstm.setBoolean(6,c.getActivado());
            
-            pstm.setInt(79,c.getID());
+            pstm.setInt(7,c.getID());
             
             rtdo = pstm.executeUpdate();  
         }

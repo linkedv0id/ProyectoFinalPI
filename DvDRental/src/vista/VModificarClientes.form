@@ -26,11 +26,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel2" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -40,16 +43,13 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="147" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="148" max="-2" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,38 +74,23 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlDIreccion2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlDIreccion" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jlApellido" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jlNombre" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jlTienda" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jlID" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="jlCiudad" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlDistrito" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlTelefono" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlCodigoP" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jlEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlActivado" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtCodigoP" max="32767" attributes="0"/>
                       <Component id="txtID" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jcCiudad" alignment="1" pref="80" max="32767" attributes="0"/>
-                      <Component id="txtDireccion2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
                       <Component id="jcTienda" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtDistrito" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jcDireccion" max="32767" attributes="0"/>
+                      <Component id="jcActivado" max="32767" attributes="0"/>
+                      <Component id="txtEmail" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
@@ -134,52 +119,22 @@
                       <Component id="jlApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlDIreccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlDIreccion2" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDireccion2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlDistrito" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtDistrito" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlCiudad" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcCiudad" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlCodigoP" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodigoP" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlActivado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcActivado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="jlTelefono" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtTelefono" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="jlEmail" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtEmail" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="69" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -205,36 +160,6 @@
             <Property name="text" type="java.lang.String" value="Apellido:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlDIreccion">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Direccion:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlDIreccion2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Direccion2:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlDistrito">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Distrito:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlCiudad">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ciudad:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlCodigoP">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Codigo Postal:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlTelefono">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Telefono:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtID">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
@@ -243,17 +168,13 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="jcTienda">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Seleccionar&quot; })" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox()"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cargarTiendasCombo();"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jcTienda.setEnabled(false);"/>
           </AuxValues>
         </Component>
@@ -263,56 +184,10 @@
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtNombre.setEnabled(false);"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCodigoP">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtCodigoP.setEnabled(false);"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtDistrito">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtDistrito.setEnabled(false);"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jcCiudad">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox()"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jcCiudad.setEnabled(false);"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtDireccion2">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtDireccion2.setEnabled(false);"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtDireccion">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtDireccion.setEnabled(false);"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtApellido">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtApellido.setEnabled(false);"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtTelefono.setEnabled(false);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jlEmail">
@@ -326,6 +201,37 @@
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtEmail.setEnabled(false);"/>
           </AuxValues>
         </Component>
+        <Component class="javax.swing.JLabel" name="jlDireccion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Direccion ID:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jcDireccion">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Seleccionar&quot; })" type="code"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cargarDireccionesCombo();"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jcDireccion.setEnabled(false);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlActivado">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Activado:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jcActivado">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;true&quot;, &quot;false&quot; })" type="code"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jcActivado.setEnabled(false);"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -335,7 +241,7 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        &#xa;    },&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;Nombre&quot;, &quot;Apellido&quot;, &quot;Email&quot;&#xa;    }&#xa;)" type="code"/>
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;TiendaID&quot;,&quot;Nombre&quot;, &quot;Apellido&quot;, &quot;Email&quot;,&quot;DireccionID&quot;,&quot;Activado&quot;&#xa;    }&#xa;)" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -414,6 +320,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Registar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRegistrarActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JButton()"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jbRegistrar.setEnabled(false);"/>
@@ -423,11 +332,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Borrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBorrarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbModificar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbModificarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbCancelar">
           <Properties>

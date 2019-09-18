@@ -92,7 +92,7 @@ public class TiendaDAO {
             if(codigo.equalsIgnoreCase("0")){
                 sql = "SELECT * FROM store  ORDER BY store_id";            
             }else{
-                sql = "SELECT * FROM store WHERE store="+codigo;     
+                sql = "SELECT * FROM store WHERE store_id="+codigo;     
             }                        
             pstm = con.prepareStatement(sql);
             
@@ -143,7 +143,7 @@ public class TiendaDAO {
         try{
             con = Fachada.getConnection();
             String sql = "UPDATE store " +
-                         "SET store_id = ?, manager_staff_id=? , address_id=? "
+                         "SET  manager_staff_id=? , address_id=? "
                     +    "WHERE store_id=?";
             pstm = con.prepareStatement(sql);            
             pstm.setInt(1, t.getGerenteID());

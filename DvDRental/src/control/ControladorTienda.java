@@ -38,7 +38,7 @@ public class ControladorTienda {
         return resultado; 
     }
      
-     public static int modificarCiudad(Tienda t)
+     public static int modificarTienda(Tienda t)
     {
         TiendaDAO tiendaDAO = new TiendaDAO();
         int resultado = tiendaDAO.modificarTienda(t);
