@@ -167,6 +167,7 @@ public class Login extends javax.swing.JFrame {
             if(empleados.get(i).getTiendaID()==tienda && empleados.get(i).getNombreUsuario().equalsIgnoreCase(nombre) && empleados.get(i).getContraseña().equalsIgnoreCase(contraseña)){
                 Inicio inicio = new Inicio(tienda,id );
                 inicio.setVisible(true);
+                System.out.println("asdasd");
                 
                 
             }dispose();

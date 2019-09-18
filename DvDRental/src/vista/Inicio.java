@@ -21,8 +21,8 @@ public class Inicio extends JFrame {
     private JMenuItem menu0Item1, menu0Item2;
     private JMenuItem menu1Item1, menu1Item2,menu1Item3,menu1Item4;
     private JMenuItem menu2Item1,menu2Item2,menu2Item3,menu2Item4;  
-    private JMenuItem menu3Item1,menu3Item2;
-    private JMenuItem menu4Item1, menu4Item2,menu4Item3,menu4Item4,menu4Item5;
+    private JMenuItem menu3Item1,menu3Item2,menu3Item3;
+    private JMenuItem menu4Item1, menu4Item2,menu4Item3,menu4Item4,menu4Item5,menu4Item6;
     private JDesktopPane JDPanel;
     private Container contenedor;
     
@@ -67,7 +67,9 @@ public class Inicio extends JFrame {
         menu3=new JMenu("Clientes");
         menu3Item1=new JMenuItem("Gestionar Clientes");
         menu3Item2=new JMenuItem("Alquilar Pelicula");
-        menu3.add(menu3Item1); menu3.add(menu3Item2);
+        menu3Item3=new JMenuItem("Chat Cliente");
+        menu3.add(menu3Item1); menu3.add(menu3Item2); menu3.add(menu3Item3);
+        
         
         menu4=new JMenu("Administracion");
         menu4Item1= new JMenuItem("Listar Inventario");
@@ -75,8 +77,9 @@ public class Inicio extends JFrame {
         menu4Item3=new JMenuItem("Tiendas");
         menu4Item4=new JMenuItem("Renta");
         menu4Item5=new JMenuItem("Listado de Pagos");
+        menu4Item6=new JMenuItem("Modificar Inventarios");
         menu4.add(menu4Item1); menu4.add(menu4Item2);menu4.add(menu4Item3);menu4.add(menu4Item4);menu4.add(menu4Item5);
-        
+        //menu4.add(menu4Item6);
         
         
         //
@@ -161,6 +164,12 @@ public class Inicio extends JFrame {
             }
         });
         
+        menu3Item3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                menu3Item3ChatClienteActionPerformed(e);
+            }
+        });
+        
         menu4Item1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {
                menu4Item1InventarioActionPerformed(e);
@@ -190,6 +199,11 @@ public class Inicio extends JFrame {
         menu4Item5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {
                menu4Item5ActionPerformed(e);
+            }
+        });
+        menu4Item6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               menu4Item6InventAriosactionPerformed(e);
             }
         });
         
@@ -227,6 +241,11 @@ public class Inicio extends JFrame {
     public void menu3Item1ClientesActionPerformed(ActionEvent evt){
         centrar(menu3Item1.getText());
     }
+    
+    public void menu3Item3ClientesActionPerformed(ActionEvent evt){
+        centrar(menu3Item3.getText());
+    }
+    
     public void menu4Item2PersonalActionPerformed(ActionEvent evt){
         centrar(menu4Item2.getText());
     }
@@ -245,8 +264,14 @@ public class Inicio extends JFrame {
     public void menu3Item2AlquilarActionPerformed(ActionEvent evt){
         centrar(menu3Item2.getText());
     }
+    public void menu3Item3ChatClienteActionPerformed(ActionEvent evt){
+        centrar(menu3Item3.getText());
+    }
     public void menu4Item5ActionPerformed(ActionEvent evt){
         centrar(menu4Item5.getText());
+    }
+    public void menu4Item6InventAriosactionPerformed(ActionEvent e){
+        centrar(menu4Item6.getText());
     }
     
     
@@ -295,8 +320,14 @@ public class Inicio extends JFrame {
         if(texto.equalsIgnoreCase("Alquilar Pelicula")){
             v=new VAlquilarPelicula(tiendaID,empleadoID);
         }
+        if(texto.equalsIgnoreCase("Chat Cliente")){
+            v=new VChatServer();
+        }
        if(texto.equalsIgnoreCase("listado de pagos")){
            v=new VListadoPagos();
+       }
+       if(texto.equalsIgnoreCase("Modificar Inventarios")){
+           v=new VModificarInventarios();
        }
          
         int x = (JDPanel.getWidth() / 2) - v.getWidth() /2;

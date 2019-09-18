@@ -126,7 +126,7 @@ public class PagoDAO {
                 listado.add(pago);
                 
             }
-            System.out.println(listado.size());
+            
         }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Código : " + 
