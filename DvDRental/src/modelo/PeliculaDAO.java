@@ -143,7 +143,7 @@ public class PeliculaDAO {
                 listado.add(pelicula);
                 
             }
-            System.out.println(listado.size());
+            
         }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Código : " + 

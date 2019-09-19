@@ -52,7 +52,7 @@ public class LenguajeDAO {
                 listado.add(lenguaje);
                 
             }
-            System.out.println(listado.size());
+            
         }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Código : " + 

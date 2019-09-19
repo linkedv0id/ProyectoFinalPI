@@ -493,7 +493,7 @@ public class VModificarInventarios extends javax.swing.JInternalFrame {
               //titulo=nombrePeliculas(listadoInventario.get(i).getPeliculaID()+"");
               modelo.addRow(new Object[]{
               listadoInventario.get(i).getID(),
-              nombrePeliculas(listadoInventario.get(i).getPeliculaID()+""),
+              listadoInventario.get(i).getPeliculaID(),
               listadoInventario.get(i).getTiendaID(),
               listadoInventario.get(i).getDisponible()
               });

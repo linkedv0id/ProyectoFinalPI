@@ -52,7 +52,7 @@ public class CategoriaDAO {
                 listado.add(categoria);
                 
             }
-            System.out.println(listado.size());
+            
         }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Código : " + 

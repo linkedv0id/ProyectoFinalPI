@@ -44,7 +44,7 @@ public class ActorDAO {
                 listado.add(actor);
                 
             }
-            System.out.println(listado.size());
+            
         }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Código : " + 

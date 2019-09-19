@@ -79,7 +79,7 @@ public class Inicio extends JFrame {
         menu4Item5=new JMenuItem("Listado de Pagos");
         menu4Item6=new JMenuItem("Modificar Inventarios");
         menu4.add(menu4Item1); menu4.add(menu4Item2);menu4.add(menu4Item3);menu4.add(menu4Item4);menu4.add(menu4Item5);
-        //menu4.add(menu4Item6);
+        menu4.add(menu4Item6);
         
         
         //
